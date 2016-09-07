@@ -1,0 +1,107 @@
+\documentclass[11pt, a4paper, spanish]{article}
+
+\usepackage[a4paper, margin=2.0cm, top=2.5cm, bottom=2.5cm]{geometry} % Define los márgenes
+\usepackage{amsmath, amscd, amssymb, amsthm, latexsym, gensymb, amsbsy} % Paquetes matemáticos
+\usepackage[spanish]{babel} % Traduce los paquetes a español
+\usepackage[utf8]{inputenc} % Codificación UTF8
+\usepackage{fancyhdr} % Encabezados y pies de página
+  \pagestyle{fancyplain}
+\usepackage{enumitem}
+\usepackage{xspace}
+\usepackage[page, toc]{appendix} % Apéndices
+\usepackage[nottoc]{tocbibind} % Referencias en la TDC
+\usepackage{scrextend} % Para usar addmargin
+\usepackage{listings} % Código
+  \lstdefinestyle{customcpp}{
+    belowcaptionskip=1\baselineskip,
+    breaklines=true,
+    xleftmargin=3em,
+    language=C++,
+    basicstyle=\small\ttfamily
+  }
+\usepackage[onelanguage, spanish]{algorithm2e}
+  % \NoCaptionOfAlgo
+  \LinesNumbered\RestyleAlgo{ruled}\IncMargin{1em}\DontPrintSemicolon\SetArgSty{}\SetCommentSty{textsf}\SetFuncSty{textsf}
+  \SetKwProg{For}{para}{ hacer}{fin}
+  \SetKwProg{Fn}{función}{:}{fin}
+\usepackage[pdftex]{graphicx} % Imágenes
+\usepackage[usenames,dvipsnames]{color} % Autoexplicativo
+\usepackage{caption} % Captions sin números
+\usepackage{multirow}
+\usepackage{caratula} % Carátula del DC
+\usepackage[]{algorithmic}
+\usepackage[]{algorithm2e}
+\usepackage[table]{xcolor} %Para incluir colores a las tablas
+\usepackage[export]{adjustbox}
+\usepackage{float}
+%\usepackage{subcaption}%Para usar subfigure
+% Bibliografía
+\usepackage{biblatex}
+\addbibresource{referencias.bib}
+
+\usepackage[spanish]{babel} 
+\usepackage[latin1]{inputenc} % acentos sin codigo
+\usepackage{verbatim} % comentarios
+
+% Comandos personalizados
+\let\strong\textbf
+\renewcommand{\appendixtocname}{Apéndices}
+\renewcommand{\appendixpagename}{Apéndices}
+\theoremstyle{plain}
+  \newtheorem{prop}{Proposición}
+  \newtheorem{lema}{Lema}
+\theoremstyle{remark}
+  \newtheorem{obs}{Observación}
+\theoremstyle{definition}
+  \newtheorem{defi}{Definición}
+\setlength{\parskip}{.3em}
+\newcommand{\acr}[1]{\textsc{\lowercase{#1}}} % Acrónimos
+\newcommand{\mat}[1]{\ensuremath{\mathbf{#1}}}
+
+% Encabezado
+\lhead{Sistemas Operativos}
+\rhead{Trabajo Práctico Nº 1 - \emph{Scheduler}}
+% Pie de pagina
+\renewcommand{\footrulewidth}{0.4pt}
+% \lfoot{FCEN}
+% \rfoot{UBA}
+
+\begin{document}
+
+% Datos de carátula
+\materia{Ingeniria del Software I}
+\titulo{Tp 1}
+\subtitulo{Buscando Bares}
+\fecha{9/8}
+
+\integrante{Juan Ignacio Noli Villar}{174/14}{juaninv@outlook.com}
+\integrante{Axel Ariel Lew}{225/14}{axel.lew@hotmail.com}
+\integrante{Andreas Sturmer}{28/13}{remruts@gmail.com}
+\integrante{Leandro Germán Vega}{698/11}{leandrogvega@gmail.com}
+
+% Carátula
+\maketitle
+\newpage
+
+\clearpage
+
+% Índice
+\tableofcontents
+\clearpage
+
+\input{secciones/introduccion.tex}
+\input{secciones/backlog.tex}
+\input{secciones/sprint1.tex}
+
+% Contenido
+
+% Apéndices
+%\begin{appendices}
+% \input{apendices/a-enunciado.tex}
+%\clearpage
+%\end{appendices}
+% Referencias
+
+\printbibliography[heading=bibintoc]
+\end{document}
+

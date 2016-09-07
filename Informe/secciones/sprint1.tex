@@ -1,0 +1,227 @@
+\section{Sprint 1: }
+
+\subsection{User Stories: }
+
+    
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{| p{12.118cm} |}
+            \hline
+            \multicolumn{1}{|c|}{Tasks Iniciales} \\
+            \hline
+            1. Discutir Diseño del Modelo Inicial. (2 hs.) \\ \hline
+            2. Elegir Lenguaje y Framework. (1 hs.) \\ \hline
+            3. Agregar Bares, Usuarios y Categorías al Sistema. (1 hs.) \\ \hline
+            4. Implementar el Modelo: Crear clase Bar. Crear clase Usuario. Crear clase Categoria. Crear clase Principal. (12 hs.) \\ \hline
+        \end{tabular}
+    \end{table}
+    
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{| p{1.5cm}| p{10.2cm} |}
+            \hline
+            \multicolumn{2}{|c|}{User Story: Ciudadano Común - Ver Bares Cercanos} \\
+            \hline
+            COMO & Ciudadano Común \\ \hline
+            QUIERO & Ver los bares cercanos a un punto dado \\ \hline
+            PARA & Llegar rápido a un bar que me guste \\ \hline
+            \hline
+        \end{tabular}
+        \begin{tabular}{| p{12.118cm} |}
+            \multicolumn{1}{|c|}{Tasks} \\
+            \hline
+            1. Obtiene la ubicación de un usuario o una dirección que inserta el usuario. (1 hs.) \\ \hline
+            2. Calcula las distancias a los distintos Bares y muestra los bares a menos de 400 metros. (1 hs.)\\ \hline
+            \hline
+            \multicolumn{1}{|c|}{Criterios de Aceptación} \\
+            \hline
+            1. El usuario, dado un punto, debe poder ver los bares cercanos (menos de 400 mentros) a ese lugar \\ \hline
+            2. El usuario debe poder volver a la pantalla anterior en cualquier momento \\ \hline
+            Value: 10 \\ \hline
+            Effort: 8 \\ \hline
+        \end{tabular}
+    \end{table}
+    
+    \strong{Justificación:} El enunciado del sprint pide obtener los bares a menos de 400 metros desde un punto dado. \\
+    
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{| p{1.5cm}| p{10.2cm} |}
+            \hline
+            \multicolumn{2}{|c|}{User Story: Ciudadano Común - Filtrar Bares con Wi-Fi} \\
+            \hline
+            COMO & Ciudadano Común \\ \hline
+            QUIERO & Filtrar los bares que tienen Wi-Fi \\ \hline
+            PARA & Usar internet en el bar \\ \hline
+            \hline
+        \end{tabular}
+        \begin{tabular}{| p{12.118cm} |}
+            \multicolumn{1}{|c|}{Tasks} \\
+            \hline
+            1. Hacer el Filtro: Obtener el puntaje sobre la categoría. Ordenar la información. Presentar la información ordenada. (2 hs.)\\ \hline
+            \hline
+            \multicolumn{1}{|c|}{Criterios de Aceptación} \\
+            \hline
+            1. El usuario, dada la lista de bares cercanos, se le pregunta si quiere filtrar los bares que tienen Wi-Fi \\ \hline
+            2. El usuario debe poder volver a la pantalla anterior en cualquier momento \\ \hline
+            3. Si el usuario decide filtrar, se quitaran de la lista los bares sin Wi-Fi \\ \hline
+            Value: 8 \\ \hline
+            Effort: 2 \\ \hline
+        \end{tabular}
+    \end{table}
+    
+    \strong{Justificación:} El enunciado del sprint pide obtener los bares que tengan Wi-Fi. \\
+    
+
+
+%%%%%% de aca en mas son todos comentarios %%%%%%%
+
+
+\begin{comment}
+
+\begin{itemize}
+    \begin{itemize}
+        \item Task Inicial - Discutir Diseño del Modelo Inicial
+        
+        \strong{Hacer:}
+        
+        
+        \item Task Inicial - Elegir Lenguaje y Framework
+        
+        \strong{Hacer:}
+        
+        
+        \item Task Inicial - Agregar Bares, Usuarios y Categorías al Sistema
+        
+        \strong{Hacer:}
+        
+        \begin{itemize}
+            \item Crear Instancias de usuarios, bares y categorías.
+            \item Llenar con informacion las instancias creadas.
+            \item Agregar la instancias al Sistemas.
+        \end{itemize}
+        
+        \item Task Inicial - Implementar el Modelo
+        
+        \strong{Hacer:}
+        
+        \begin{itemize}
+            \item Crear clase Bar.
+            \item Crear clase Usuario.
+            \item Crear clase Categoria.
+            \item Crear clase Principal.
+        \end{itemize}
+        
+    \end{itemize}
+
+    
+    \item Ciudadano Común - Ver Bares Cercanos
+    
+    COMO Ciudadano Común QUIERO ver los bares cercanos a un punto dado PARA poder llegar rápido a un bar que me guste.
+    
+    \strong{Criterios de Aceptación:}
+    
+    \begin{itemize}
+        \item 1. El usuario, dado un punto, debe poder ver los bares cercanos (menos de 400 mentros) a ese lugar.
+        \item 2. El usuario debe poder volver a la pantalla anterior en cualquier momento.
+    \end{itemize}
+    
+    \strong{Value: 10}
+    
+    \strong{Effort: 8}
+    
+    \strong{Justificación:} El enunciado del sprint pide obtener los bares a menos de 400 metros desde un punto dado.
+
+    \strong{Tasks:}
+
+    \begin{itemize}
+        
+        \item Obtener Ubicación (1hs)
+        
+        \strong{Hacer:} 
+        \begin{itemize}
+            \item Obtiene la ubicación de un usuario o una dirección que inserta el usuario.
+        \end{itemize}
+        
+        \item Obtener Distancias (1hs)
+        
+        \strong{Hacer:} 
+        \begin{itemize}
+            \item Calcula las distancias a los distintos Bares. 
+            \item Muestra los bares a menos de 400 metros.
+        \end{itemize}
+        
+    \end{itemize}
+    
+    
+    \item Ciudadano Común - Filtrar Bares con Wi-Fi
+    
+    COMO Ciudadano Común QUIERO poder filtrar los bares que tienen Wi-Fi PARA poder usar internet en el bar.
+    
+    \strong{Criterios de Aceptación:}
+    
+    \begin{itemize}
+        \item 1. El usuario, dada la lista de bares cercanos, se le pregunta si quiere filtrar los bares que tienen Wi-Fi
+        \item 2. El usuario debe poder volver a la pantalla anterior en cualquier momento.
+        \item 3. Si el usuario decide filtrar, se quitaran de la lista los bares sin Wi-Fi
+    \end{itemize}
+    
+    \strong{Value: 8}
+    
+    \strong{Effort: 2}
+    
+    \strong{Justificación:} El enunciado del sprint pide obtener los bares que tengan Wi-Fi.
+    
+    \strong{Tasks:}
+    
+    \begin{itemize}
+        \item Hacer el Filtro (2hs)
+        
+        \strong{Hacer:} 
+        \begin{itemize}
+            \item Obtener el puntaje sobre la categoría.
+            \item Ordenar la información.
+            \item Presentar la información ordenada.
+        \end{itemize}
+        
+    \end{itemize}
+    
+\end{comment}
+
+
+\begin{comment}
+    \begin{table}[htb]
+        \centering
+        \begin{tabular}{| p{2.2cm}| p{4.2cm} |}
+            \hline
+            \multicolumn{2}{|c|}{Ciudadano Común - Ver Bares Cercanos} \\
+            \hline \hline
+            COMO & Ciudadano Común \\ \hline
+            QUIERO & Ver los bares cercanos a un punto dado \\ \hline
+            PARA & Poder llegar rápido a un bar que me guste \\ \hline
+        \end{tabular}
+    \end{table}
+    
+    \begin{table}[htb]
+        \centering
+        \begin{tabular}{| p{6.8cm} |}
+            \hline
+            Tasks \\
+            \hline \hline
+            1. Obtiene la ubicación de un usuario o una dirección que inserta el usuario \\ \hline
+            2. Calcula las distancias a los distintos Bares y muestra los bares a menos de 400 metros\\ \hline
+        \end{tabular}
+    \end{table}
+    
+    \begin{table}[htb]
+        \centering
+        \begin{tabular}{| p{6.8cm} |}
+            \hline
+            Criterios de Aceptación \\
+            \hline \hline
+            1. El usuario, dado un punto, debe poder ver los bares cercanos (menos de 400 mentros) a ese lugar \\ \hline
+            2. El usuario debe poder volver a la pantalla anterior en cualquier momento \\ \hline
+        \end{tabular}
+    \end{table}
+\end{comment}
+

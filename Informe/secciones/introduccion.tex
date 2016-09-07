@@ -1,0 +1,25 @@
+\section{Introducción:}
+
+En este trabajo se nos pide diseñar e implementar una aplicación. El objetivo de esta aplicacion es que los usuarios puedan buscar bares. Estas busquedas estaran influenciadas por distintas características (como distancia, precios, etc.). En particular nos enfocaremos en la señal Wi-Fi, la distacia y la cantidad de enchufes disponibles. Los mismos usuarios son los responsables del ingreso de bares al sistema, y su calificación en los distintos aspectos
+
+Utilizaremos para esto metodologías ágiles, en particular Scrum. En este informe detallamos distintas User Stories utilizadas para describir los requerimientos y funcionalidades listados en el backlog. Para esto, identificamos los actores presentes en nuestro modelo en tres categorías: $Ciudadano$ $Común$, $Ciudadano$ $Registrado$, y Admin.
+
+Un $Ciudadano$ $Común$ representa un usuario no $Registrado$. Puede buscar bares y filtrarlos, pero no ingresarlos en el sistema ni calificar ninguna de sus características.
+
+El $Ciudadano$ $Registrado$, en cambio, puede ingresar y calificar bares. Hereda el comportamiento del $Ciudadano$ $Común$, pudiendo también buscar y filtrarlos.
+
+Un $Admin$, o Administrador, se encarga de moderar el contenido de la aplicación. Determina si un bar será ingresado en el sistema o no (el pedido de ingreso lo realiza el $Ciudadano$ $Registrado$). También, puede modificar y eliminar bares, entre otras funciones. Ademàs, puede realizar las mismas acciones que un $Ciudadano$ $Registrado$.
+
+
+Aclaraciones sobre nuestras decisiones sobre el diseño e implementación:
+\begin{itemize}
+
+\item Nosotros deseamos que una persona no pueda votar más de una vez un bar. Por lo tanto pedimos a los usuarios que se registren para poder votar, marcando asi la diferencia entre un $Ciudadano$ $Común$ y un $Ciudadano$ $Registrado$. 
+
+\item Para evitar que una persona intente agregar un bar que no existe, o uno ya $Registrado$ en nuestro sistema, agregamos la figura del $Admin$, quien se encarga de confirmar o denegar los pedidos de alta de bares.
+
+\item Creemos que un usuario, debe poder ver o modificar su calificación de un bar si lo desea. \strong{¿Necesario?}
+
+\item \huge{¿Algo más?}
+
+\end{itemize}

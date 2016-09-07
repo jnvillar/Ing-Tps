@@ -1,0 +1,275 @@
+\section{Backlog:}
+
+\subsection{User Stories:}
+
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{| p{1.5cm}| p{10.2cm} |}
+            \hline
+            \multicolumn{2}{|c|}{User Story: Admin - Aprobar Bar} \\
+            \hline
+            COMO & Administrador \\ \hline
+            QUIERO & Evaluar la aprobación de un bar \\ \hline
+            PARA & Moderar el contenido de la aplicación \\ \hline
+            \hline
+        \end{tabular}
+        \begin{tabular}{| p{12.118cm} |}
+            \multicolumn{1}{|c|}{Tasks} \\
+            \hline
+            1.  \\ \hline
+            2.  \\ \hline
+            \hline
+            \multicolumn{1}{|c|}{Criterios de Aceptación} \\
+            \hline
+            1. El administrador puede acceder a una lista de bares pendientes para su aprobación. \\ \hline
+            2. El administrador puede seleccionar un bar y ver su información. \\ \hline
+            3. El administrador puede aceptar o rechazar el bar seleccionado. \\ \hline
+            4. Luego el bar, si es aceptado, se agrega a la base de datos de la aplicación. \\ \hline
+            5. Sino, se descarta toda su información. \\ \hline
+            Value: 1 \\ \hline
+            Effort: 1 \\ \hline
+        \end{tabular}
+    \end{table}
+    
+    \strong{Justificación:} Luego de que un usuario registrado agregue un bar, un admin debe moderar el contenido, para que se esta forma, la aplicación no se llene de información falsa. \\
+    
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{| p{1.5cm}| p{10.2cm} |}
+            \hline
+            \multicolumn{2}{|c|}{User Story: Admin - Modificar/Eliminar un Bar} \\
+            \hline
+            COMO & Administrador \\ \hline
+            QUIERO & Poder modificar la información de un bar seleccionado e incluso borrarlo \\ \hline
+            PARA & Moderar el contenido de la aplicación \\ \hline
+            \hline
+        \end{tabular}
+        \begin{tabular}{| p{12.118cm} |}
+            \multicolumn{1}{|c|}{Tasks} \\
+            \hline
+            1. \\ \hline
+            2. \\ \hline
+            \hline
+            \multicolumn{1}{|c|}{Criterios de Aceptación} \\
+            \hline
+            1. El Admin debe poder modificar, el nombre y la ubicación del bar seleccionado. \\ \hline
+            2. Al Admin se le pedirá que confirme o descarte los cambios \\ \hline
+            3. El Admin debe poder eliminar un bar seleccionado. \\ \hline
+            4. Al Admin se le pedirá que confirme la eliminación del bar. \\ \hline
+            5. Al terminar el accionar del Admin, se guardaran los cambios (en caso de que los haya) en la base de datos. \\ \hline
+            Value: 3 \\ \hline
+            Effort: 5 \\ \hline
+        \end{tabular}
+    \end{table}
+    
+    \strong{Justificación:} Queremos que la posibilidad de modificar/eliminar un bar esté disponible para el administrador, ya que podría ser útil si se ingreso información falsa, o si se desea quitar un bar de la app. \\
+    
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{| p{1.5cm}| p{10.2cm} |}
+            \hline
+            \multicolumn{2}{|c|}{User Story: Ciudadano Resgistrado - Agregar Bar} \\
+            \hline
+            COMO & Ciudadano Registrado \\ \hline
+            QUIERO & Poder agregar un nuevo bar \\ \hline
+            PARA & Que aparezca en la aplicación \\ \hline
+            \hline
+        \end{tabular}
+        \begin{tabular}{| p{12.118cm} |}
+            \multicolumn{1}{|c|}{Tasks} \\
+            \hline
+            1. \\ \hline
+            2. \\ \hline
+            \hline
+            \multicolumn{1}{|c|}{Criterios de Aceptación} \\
+            \hline
+            1. El usuario debe ingresar el nombre y la ubicación del bar. \\ \hline
+            2. El usuario debe obligatoriamente, indicar si el bar tiene Wi-Fi o no, y en caso de que lo tenga, calificar el nivel del Wi-Fi. Además debe calificar la cantidad de enchufes del bar. \\ \hline
+            3. El usuario puede calificar las otras características que haya en la aplicación. \\ \hline
+            4. Al usuario se le muestra un resumen de lo que subió y se le pide una confirmación. \\ \hline
+            5. Se le notifica al usuario que su pedido queda pendiente para su aprobación. \\ \hline
+            Value: 10 \\ \hline
+            Effort: 3 \\ \hline
+        \end{tabular}
+    \end{table}
+    
+    \strong{Justificación:} Funcionalidad escencial que debe tener la aplicación. \\
+    
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{| p{1.5cm}| p{10.2cm} |}
+            \hline
+            \multicolumn{2}{|c|}{User Story: Ciudadano Resgistrado - Loguearse} \\
+            \hline
+            COMO & Ciudadano Registrado \\ \hline
+            QUIERO & Ingresar a mi cuenta \\ \hline
+            PARA & Acceder a las funcionalidades de usuario registrado \\ \hline
+            \hline
+        \end{tabular}
+        \begin{tabular}{| p{12.118cm} |}
+            \multicolumn{1}{|c|}{Tasks} \\
+            \hline
+            1. \\ \hline
+            2. \\ \hline
+            \hline
+            \multicolumn{1}{|c|}{Criterios de Aceptación} \\
+            \hline
+            1. El usuario debe poder ingresar sus datos, para poder acceder al sistema. \\ \hline
+            2. De ser correctos, ingresará al sistema registrado. \\ \hline
+            3. De ser incorrectos, se le indicará esto y deberá ingresar los datos nuevamente. \\ \hline
+            Value: 3 \\ \hline
+            Effort: 5 \\ \hline
+        \end{tabular}
+    \end{table}
+    
+    \strong{Justificación:} Pensamos que estaría bueno hacer una distinción entre usuarios registrados y usuarios no registrados. El usuario registrado utiliza todas las funcionalidades, mientras que el que no está registrado sólo puede buscar bares. \\
+    
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{| p{1.5cm}| p{10.2cm} |}
+            \hline
+            \multicolumn{2}{|c|}{User Story: Ciudadano Resgistrado - Calificar/Modificar Calificación} \\
+            \hline
+            COMO & Ciudadano Registrado \\ \hline
+            QUIERO & Poder calificar las categorías o modificar las que ya realice de un bar seleccionado \\ \hline
+            PARA & Aportar información del bar \\ \hline
+            \hline
+        \end{tabular}
+        \begin{tabular}{| p{12.118cm} |}
+            \multicolumn{1}{|c|}{Tasks} \\
+            \hline
+            1. \\ \hline
+            2. \\ \hline
+            \hline
+            \multicolumn{1}{|c|}{Criterios de Aceptación} \\
+            \hline
+            1. El usuario puede ver las categorías del bar en una lista. Y (en caso de existir) las correspondientes calificaciones realizadas. \\ \hline
+            2. El usuario puede calificar cada categoría que desee, con un puntaje de 1 a 5 estrellas. En caso de que ya exista una calificación, se modificara la misma. \\ \hline
+            3. El usuario puede indicar si cancela la acción o si la confirma. \\ \hline
+            4. Si la confirma, la información se sube a la base de datos  \\ \hline
+            5. Sino, se descartan los cambios. \\ \hline
+            Value: 8 \\ \hline
+            Effort: 8 \\ \hline
+        \end{tabular}
+    \end{table}
+    
+    \strong{Justificación:} Nos pareció una buena idea que los usuarios puedan modificar sus calificaciones, para que de esta forma, si el bar mejora, esto se pueda ver reflejado en sus calificaciones. \\
+    
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{| p{1.5cm}| p{10.2cm} |}
+            \hline
+            \multicolumn{2}{|c|}{User Story: Ciudadano Común - Registrar Usuario} \\
+            \hline
+            COMO & Ciudadano Común \\ \hline
+            QUIERO & Registrarme en el sistema \\ \hline
+            PARA & Acceder a funciones de usuario registrado (como agregar y calificar un bar) \\ \hline
+            \hline
+        \end{tabular}
+        \begin{tabular}{| p{12.118cm} |}
+            \multicolumn{1}{|c|}{Tasks} \\
+            \hline
+            1. \\ \hline
+            2. \\ \hline
+            \hline
+            \multicolumn{1}{|c|}{Criterios de Aceptación} \\
+            \hline
+            1. El usuario debe tener la opción para registrarse al sistema. \\ \hline
+            2. Elegida tal opción, el usuario deberá ingresar sus datos. \\ \hline
+            3. El usuario podrá confirmar o descartar sus acciones. \\ \hline
+            4. De confirmar (y de no haber ningún problema con los datos ingresados), se registrará al sistema e ingresará al mismo. \\ \hline
+            5. En caso de haber problemas, se deberán corregir los errores marcados. \\ \hline
+            6. Opcionalmente, se podrá registrar como adminsitrador con alguna condición especial (ejemplo: verificar un código especial). \\ \hline
+            Value: 3 \\ \hline
+            Effort: 8 \\ \hline
+        \end{tabular}
+    \end{table}
+    
+    \strong{Justificación:} Como decidimos hacer una diferencia entre usuarios registrados y usuarios no registrados, la funcionalidad de poder registrarse debe estar. \\
+    
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{| p{1.5cm}| p{10.2cm} |}
+            \hline
+            \multicolumn{2}{|c|}{User Story: Ciudadano Común - Ver Ruta} \\
+            \hline
+            COMO & Ciudadano Común \\ \hline
+            QUIERO & Ver la ruta más cercana de un bar seleccionado \\ \hline
+            PARA & Llegar lo más rápido posible \\ \hline
+            \hline
+        \end{tabular}
+        \begin{tabular}{| p{12.118cm} |}
+            \multicolumn{1}{|c|}{Tasks} \\
+            \hline
+            1. \\ \hline
+            2. \\ \hline
+            \hline
+            \multicolumn{1}{|c|}{Criterios de Aceptación} \\
+            \hline
+            1. Dado un bar seleccionado, y elegida la opción de visualización en el mapa, el usuario debe poder ver la ruta más cercana entre el bar seleccionado y el punto dado por el usuario. \\ \hline
+            2. En todo momento el usuario puede volver a la pantalla anterior. \\ \hline
+            Value: 9 \\ \hline
+            Effort: 5 \\ \hline
+        \end{tabular}
+    \end{table}
+    
+    \strong{Justificación:} Esta es una funcionalidad escencial que debe tener la aplicación. \\
+
+\begin{itemize}
+    
+    \item User Story: Admin - Aprobar Bar
+    
+    COMO administrador QUIERO evaluar la aprobación de un bar PARA moderar el contenido de la aplicación.
+
+    \strong{Justificación:} Luego de que un usuario registrado agregue un bar, un admin debe moderar el contenido, para que se esta forma, la aplicación no se llene de información falsa.
+    
+    \strong{Criterios de Aceptación:}
+    
+    \strong{Value:}
+    
+    \strong{Effort:}
+    
+    \item User Story: Admin - Modificar/Eliminar un Bar
+    
+    COMO Admin QUIERO poder modificar la información de un bar seleccionado e incluso borrarlo PARA poder moderar la información
+    
+    \strong{Justificación:} Queremos que la posibilidad de modificar/eliminar un bar este disponible para el administrador, ya que podría ser útil si se ingreso información falsa, o si se desea quitar un bar de la app
+    
+    \strong{Criterios de Aceptación:}
+    
+    \strong{Value:}
+    
+    \strong{Effort:}
+    
+    \item User Story: Ciudadano Registrado - Agregar Bar
+    
+    COMO ciudadano registrado en la aplicación QUIERO poder agregar un nuevo bar PARA que aparezca en la aplicación
+    
+    \strong{Justificación:} Funcionalidad esencial que debe tener la aplicación.
+
+    \item User Story: Ciudadano Registrado - Logearse
+    
+    COMO Ciudadano Registrado QUIERO ingresar a mi cuenta PARA acceder a las funcionalidades de usuario registrado
+    
+    \strong{Justificación:} Pensamos que estaría bueno hacer una distinción entre usuarios registrados y usuarios no registrados. El usuario registrado utilizar todas las funcionalidades, mienstras que el que no esta registrado solo puede buscar bares.
+    
+    \item User Story: Ciudadano Registrado - Calificar/Modificar Calificación
+    
+    COMO ciudadano registrado QUIERO poder calificar las categorías o modificar las que ya realice de un bar seleccionado PARA aportar información del bar.
+    
+    \strong{Justificación:} Nos pareció una buena idea que los usuarios puedan modificar sus calificaciones, para que de esta forma, si el bar mejora, esto se pueda ver reflejado en sus calificaciones
+    
+    \item User Story: Ciudadano Común - Registrar Usuario
+    
+    COMO Ciudadano Común QUIERO registrarme en el sistema PARA acceder a funciones de usuario registrado (como agregar y calificar un bar)
+    
+    \strong{Justificación:} Como decidimos hacer una diferencia entre usuarios registrados y usuarios no registrados, la funcionalidad de poder registrarse debe estar.
+    
+    \item User Story: Ciudadano Común - Ver Ruta
+    
+    COMO Ciudadano Común QUIERO ver la ruta mas cercana de un bar seleccionado PARA llegar lo mas rápido posible
+    
+    \strong{Justificación:} Esta es una funcionalidad escencial que debe tener la aplicacion
+    
+    
+\end{itemize}
