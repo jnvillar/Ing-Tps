@@ -1,20 +1,17 @@
-class RegistrarBar:
+import sys
 
-	def __init__(self):
+def agregarBar(Bar, RegistroBares):
+	repetido = buscarBar(Bar, RegistroBares)
+	if not repetido : 
+		RegistroBares.append(Bar)
+	else: sys.stderr.write('Fallo agregarBar: El Bar ya se encuentra en el Sistema \n')
 
-
-	def agregarBar(self, Bar, RegistroBares):
-		repetido = buscarBar(Bar, RegistroBares)
-		if(!repetido) 
-			RegistroBares.push(Bar)
-		else sys.stderr.write('Fallo agregarBar: El Bar ya se encuentra en el Sistema')
-
-	def buscarBar(Bar, RegistroBar):
-		encontrado = False
-		for unBar in RegistroBar:
-			if(unBar == Bar) 
-				encontrado = true
-		return encontrado
+def buscarBar(Bar, RegistroBares):
+	encontrado = False
+	for unBar in RegistroBares:
+		if unBar.nombre == Bar.nombre: 
+			encontrado = True
+	return encontrado
 
 
 	
