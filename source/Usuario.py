@@ -4,9 +4,12 @@ class Usuario:
 		self.nombre = nombreUsuario
 		self.ubicacion = 0
 	
-	#def darNombre(self):
-	#	return nombre
+	def darNombre(self):
+		return self.nombre
 
-	#def darUbicacion(self):
+	def darUbicacion(self):
 	#	# Actualizar ubicacion
-	#	return ubicacion
+		return self.ubicacion
+
+	def actualizarUbicacion(self, nuevaUbicacion):
+		self.ubicacion = nuevaUbicacion

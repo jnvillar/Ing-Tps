@@ -5,11 +5,11 @@ class Bar:
 		self.ubicacion = ubicacionBar
 		self.hayWiFi = wiFi
 	
-	#def darNombre(self):
-	#	return nombre
+	def darNombre(self):
+		return self.nombre
 
-	#def darUbicacion(self):
-	#	return ubicacion
+	def darUbicacion(self):
+		return self.ubicacion
 
-	#def tieneWifi(self):
-	#	return hayWiFi
+	def tieneWifi(self):
+		return self.hayWiFi

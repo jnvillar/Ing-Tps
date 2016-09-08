@@ -20,31 +20,38 @@ if __name__ == "__main__":
 	bar3 = Bar("Bar Cool", 1, False)
 	bar4 = Bar("Nuevo Bar", 55, True)
 
+	regBar = RegistrarBar()
+	regUser = RegistrarUsuario()
+
 	RegistroBares = []
 	RegistroUsuarios = []
 
-	agregarBar(bar1, RegistroBares)
-	agregarBar(bar2, RegistroBares)
-	agregarBar(bar4, RegistroBares)
-	agregarBar(bar3, RegistroBares)
+	regBar.agregarBar(bar1, RegistroBares)
+	regBar.agregarBar(bar2, RegistroBares)
+	regBar.agregarBar(bar4, RegistroBares)
+	regBar.agregarBar(bar3, RegistroBares)
 
-	agregarUsuario(user3, RegistroUsuarios)
-	agregarUsuario(user1, RegistroUsuarios)
-	agregarUsuario(user2, RegistroUsuarios)
-	agregarUsuario(user6, RegistroUsuarios)
-	agregarUsuario(user4, RegistroUsuarios)
+	regUser.agregarUsuario(user3, RegistroUsuarios)
+	regUser.agregarUsuario(user1, RegistroUsuarios)
+	regUser.agregarUsuario(user2, RegistroUsuarios)
+	regUser.agregarUsuario(user6, RegistroUsuarios)
+	regUser.agregarUsuario(user4, RegistroUsuarios)
 
-	print "RegBar[0]:", RegistroBares[0].nombre
-	print "RegBar[1]:", RegistroBares[1].nombre
-	print "RegBar[2]:", RegistroBares[2].nombre
-	print "RegUser[0]:", RegistroUsuarios[0].nombre
-	print "RegUser[1]:", RegistroUsuarios[1].nombre
-	print "RegUser[3]:", RegistroUsuarios[3].nombre
-	#print RegistroBares[3].nombre
+	print "RegBar[0]:", RegistroBares[0].darNombre()
+	print "RegBar[1]:", RegistroBares[1].darNombre()
+	print "RegBar[2]:", RegistroBares[2].darNombre()
+	print "RegUser[0]:", RegistroUsuarios[0].darNombre()
+	print "RegUser[1]:", RegistroUsuarios[1].darNombre()
+	print "RegUser[3]:", RegistroUsuarios[3].darNombre()
+	#print RegistroBares[2].darNombre()
 
 	#testear modificar ubicacion
-	print "El usuario", user1.nombre, "tiene la siguiente ubicacion:", user1.ubicacion
-	user1.ubicacion = 3
-	print "El usuario", user1.nombre, "tiene la siguiente ubicacion:", user1.ubicacion
+	print "El usuario", user1.darNombre(), "tiene la siguiente ubicacion:", user1.darUbicacion()
+	user1.actualizarUbicacion(3)
+	print "El usuario", user1.darNombre(), "tiene la siguiente ubicacion:", user1.darUbicacion()
+
+	print bar1.darNombre()
+	print bar1.darUbicacion()
+	print bar1.tieneWifi()
 
 	sys.exit(1)
