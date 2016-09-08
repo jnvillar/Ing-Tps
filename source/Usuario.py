@@ -2,7 +2,7 @@ class Usuario:
 
 	def __init__(self, nombreUsuario):
 		self.nombre = nombreUsuario
-		self.ubicacion = 0
+		self.ubicacion = (0,0)
 	
 	def darNombre(self):
 		return self.nombre
