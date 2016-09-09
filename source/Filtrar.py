@@ -2,12 +2,22 @@ import math
 
 class Filtrar:
 
-	def filtrarPorDistancia(self, distanciaUsuario, RegistroBares, cantDistanciaFiltrar):
-		RegistroBares2 = []
-		for unBar in RegistroBares:
-			dist = math.hypot(unBar.darUbicacion()[0] - distanciaUsuario[0], unBar.darUbicacion()[1] - distanciaUsuario[1])
-			if dist < cantDistanciaFiltrar:
-				RegistroBares2.append(unBar)
+	def porDistancia(self, puntoDado, RegistroBares, rango):
+		BaresCercanos = [unBar for unBar in RegistroBares if self.distancia(puntoDado, unBar.darUbicacion()) < rango]
+		return BaresCercanos
 
-		return RegistroBares2
+	def distancia(self, puntoDado, ubicacionBar):
+		return math.hypot(ubicacionBar[0] - puntoDado[0], ubicacionBar[1] - puntoDado[1])
+
+	def porWifi(self, RegistroBares):
+		BaresConWiFi = [unBar for unBar in RegistroBares if unBar.tieneWifi()]
+		return BaresConWiFi
+
+	def porCategoria(self, Categoria, RegistroBares, rango):
+		BaresAceptados = [unBar for unBar in RegistroBares if self.promedio(Categoria, unBar) >= rango]
+		return BaresAceptados
+
+	##### Falta hacer dicha funcion, que no se donde deberia ir. ######
+	def promedio(self, Categoria, Bar):
+		return 0 
 

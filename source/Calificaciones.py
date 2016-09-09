@@ -13,7 +13,7 @@ class Calificacion:
 		self.estrellas = val
 
 	def darValor(self):
-		return self.valor
+		return self.estrellas
 
 class Categoria:
 
@@ -21,26 +21,29 @@ class Categoria:
 		self.nombreDeLaCategoria = nombre
 		self.contenedorDeCalifiaciones = {}
 
-	def agregarCalificacion(bar,calificacion):
+	def agregarCalificacion(self,bar,calificacion):
 		self.contenedorDeCalifiaciones.setdefault(bar.darNombre(),[]).append(calificacion)
 
-	def quitarCalificacion(bar,calificacion):
+	def quitarCalificacion(self,bar,calificacion):
 		self.contenedorDeCalifiaciones[bar.darNombre()].remove(calificacion)
 
 	def darNombre(self):
-		return nombreDeLaCategoria
+		return self.nombreDeLaCategoria
 
 class ContenedorCategorias:
 	def __init__(self):
 		self.categorias = []
 	
-	def agregarCategoria(self, categoria)
-		self.categorias.append(categorias)
+	def agregarCategoria(self, categoria):
+		self.categorias.append(categoria)
 
-	def agregarCalificacion(self,categoria,calificacion)
+	def verContenedor(self):
+		return self.categorias
+
+	def agregarCalificacion(self,categoria,calificacion):
 		assert(categoria in categorias)
 		categorias[categorias.index(categoria)].agregarCalificacion(calificacion)
 
-	def eliminarCalificacion(self,categoria,calificacion)
+	def eliminarCalificacion(self,categoria,calificacion):
 		assert(categoria in categorias)
 		categorias[categorias.index(categoria)].quitarCalificacion(calificacion)

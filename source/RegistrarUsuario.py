@@ -2,6 +2,7 @@ import sys
 
 class RegistrarUsuario:
 
+	#### Duda: Iniciar Registro de Usuarios aca, dentro de esta clase
 	def agregarUsuario(self, Usuario, RegistroUsuarios):
 		repetido = self.buscarUsuario(Usuario, RegistroUsuarios)
 		if not repetido: 
