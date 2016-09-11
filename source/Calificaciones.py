@@ -15,7 +15,7 @@ class Calificacion:
 	def darValor(self):
 		return self.estrellas
 
-class Categoria:
+class Calificaciones:
 
 	def __init__(self,nombre):
 		self.nombreDeLaCategoria = nombre
@@ -25,25 +25,56 @@ class Categoria:
 		self.contenedorDeCalifiaciones.setdefault(bar.darNombre(),[]).append(calificacion)
 
 	def quitarCalificacion(self,bar,calificacion):
+		assert(bar in self.contenedorDeCalifiaciones)
 		self.contenedorDeCalifiaciones[bar.darNombre()].remove(calificacion)
+
+	def modificarCalificacion(self,bar,calificacionVieja,calificacionNueva)
+		assert(bar in self.contenedorDeCalifiaciones)
+		self.quitarCalificacion(bar,calificacionVieja)
+		self.agregarCalificacion(bar,calificacionNueva)
+
+	def buscarCalificacionDeUnUsuario(self,bar,usuario):
+		assert(bar in self.contenedorDeCalifiaciones)
+		listaDeCalificaciones = self.contenedorDeCalifiaciones.get(bar)
+		for calificacion in listaDeCalificaciones:
+			if calificacion.darUsuario == usuario:
+				return calificacion
+
+	def existeCalificacionDeUnUsuario(self,bar,usuario):
+		assert(bar in self.contenedorDeCalifiaciones)
+		listaDeCalificaciones = self.contenedorDeCalifiaciones.get(bar)
+		for calificacion in listaDeCalificaciones:
+			if calificacion.darUsuario == usuario:
+				return True
+		return False
+
 
 	def darNombre(self):
 		return self.nombreDeLaCategoria
 
-class ContenedorCategorias:
+class ContenedorDeCalificaciones:
 	def __init__(self):
 		self.categorias = []
 	
 	def agregarCategoria(self, categoria):
 		self.categorias.append(categoria)
 
-	def verContenedor(self):
-		return self.categorias
-
-	def agregarCalificacion(self,categoria,calificacion):
+	def verCalificacionesDeUnaCategoria(self,categoria):
 		assert(categoria in categorias)
-		categorias[categorias.index(categoria)].agregarCalificacion(calificacion)
+		return categorias[categorias.index(categoria)]
 
-	def eliminarCalificacion(self,categoria,calificacion):
+	def agregarCalificacion(self,categoria,bar,calificacion):
 		assert(categoria in categorias)
-		categorias[categorias.index(categoria)].quitarCalificacion(calificacion)
+		categorias[categorias.index(categoria)].agregarCalificacion(bar,calificacion)
+
+	def eliminarCalificacion(self,categoria,bar,calificacion):
+		assert(categoria in categorias)
+		categorias[categorias.index(categoria)].quitarCalificacion(bar,calificacion)
+
+	def existeCalificacionDeUnUsuario(self,categoria,bar,usuario):
+		assert(categoria in categorias)
+		categorias[categorias.index(categoria)].existeCalificacionDeUnUsuario(bar,usuario)
+
+	def modificarCalificacion(self,categoria,bar,calificacion):
+		self.eliminarCalificacion(categoria,bar,calificacion)
+		self.agregarCalificacion(categoria,bar,calificacion)
