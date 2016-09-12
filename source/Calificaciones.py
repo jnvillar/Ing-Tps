@@ -24,11 +24,13 @@ class Calificaciones:
 	def agregarCalificacion(self,bar,calificacion):
 		self.contenedorDeCalifiaciones.setdefault(bar.darNombre(),[]).append(calificacion)
 
+		# que solo tome al usuario
 	def quitarCalificacion(self,bar,calificacion):
 		assert(bar in self.contenedorDeCalifiaciones)
 		self.contenedorDeCalifiaciones[bar.darNombre()].remove(calificacion)
 
-	def modificarCalificacion(self,bar,calificacionVieja,calificacionNueva)
+		# que solo tome la calificacion nueva
+	def modificarCalificacion(self,bar,calificacionVieja,calificacionNueva) 
 		assert(bar in self.contenedorDeCalifiaciones)
 		self.quitarCalificacion(bar,calificacionVieja)
 		self.agregarCalificacion(bar,calificacionNueva)
