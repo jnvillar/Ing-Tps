@@ -14,7 +14,6 @@ class Aplicacion:
 
         registroDeCalificaciones = []
 
-        calificador = Calificador()
         registrador = Registrador()
         filtro = Filtro()
 
@@ -28,11 +27,13 @@ class Aplicacion:
         self.registrador.registrar(nuevoBar, registroBares)
 
         if tieneWiFi:
-            categoriaWIFI = ([unaCategoria for unaCategoria in registroDeCategorias if unaCategoria.darNombre() == "WiFi"])[0]
-            calificador.Calificar(nuevoBar, usuario, puntajeWiFi, categoriaWIFI)
+            categoriaWiFi = ([unaCategoria for unaCategoria in registroDeCategorias if unaCategoria.darNombre() == "WiFi"])[0]
+            calificacion = Calificacion(puntajeWiFi, usuario, categoriaWiFi, nuevoBar)
+            registrador.registrar(calificacion, registroDeCalificaciones)
 
         categoriaEnchufes = ([unaCategoria for unaCategoria in registroDeCategorias if unaCategoria.darNombre() == "Enchufes"])[0]
-        calificador.Calificar(nuevoBar, usuario, puntajeEnchufes, categoriaEnchufes)
+        calificacion = Calificacion(puntajeEnchufes, usuario, categoriaEnchufes, nuevoBar)
+        registrador.registrar(calificacion, registroDeCalificaciones)
 
     def agregarCategoria(self, nombreDeLaCategoria):
         self.registrador.registrar(Categoria(nombreDeLaCategoria))
@@ -40,7 +41,12 @@ class Aplicacion:
     def calificarBar(self, usuario, bar, categoria, puntaje):
         # chequear si bar está bares
         # chequear si categoria está en categorias
-        calificador.Calificar(bar, usuario, puntaje, categoria)
+        calificacion = Calificacion(puntaje, usuario, categoria, bar)
+        if (registrador.buscar(calificacion)):
+        	# MAGIA NEGRA: Las calificaciones son iguales, aún con puntajes distintos. Entonces, modifico mi "misma" calificación
+        	registrador.modificar(calificacion, calificacion, registroDeCalificaciones)
+        else: 
+        	registrador.registrar(calificacion, registroDeCalificaciones)
 
     # fijarse si es necesario chequear si bar y categoria son correctos
     # def chequearBar(nombreBar)
