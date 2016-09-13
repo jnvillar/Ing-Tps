@@ -9,17 +9,18 @@ class Calificacion:
 
 	def modificarValor(self,val,user):
 		assert(val<6 and 0<val)
-		assert(self.usuario == user) 
+		assert(self.usuario == user)
 		self.estrellas = val
 
 	def darValor(self):
 		return self.estrellas
 
+# Esto deberìa llamarse tal vez "Categoria"
 class Calificaciones:
 
 	def __init__(self,nombre):
 		self.nombreDeLaCategoria = nombre
-		self.contenedorDeCalifiaciones = {}
+		self.contenedorDeCalificaciones = {}
 
 	def agregarCalificacion(self,bar,calificacion):
 		self.contenedorDeCalifiaciones.setdefault(bar.darNombre(),[]).append(calificacion)
@@ -27,10 +28,10 @@ class Calificaciones:
 		# que solo tome al usuario
 	def quitarCalificacion(self,bar,calificacion):
 		assert(bar in self.contenedorDeCalifiaciones)
-		self.contenedorDeCalifiaciones[bar.darNombre()].remove(calificacion)
+		self.contenedorDeCalificaciones[bar.darNombre()].remove(calificacion)
 
 		# que solo tome la calificacion nueva
-	def modificarCalificacion(self,bar,calificacionVieja,calificacionNueva) 
+	def modificarCalificacion(self,bar,calificacionVieja,calificacionNueva):
 		assert(bar in self.contenedorDeCalifiaciones)
 		self.quitarCalificacion(bar,calificacionVieja)
 		self.agregarCalificacion(bar,calificacionNueva)
@@ -57,7 +58,7 @@ class Calificaciones:
 class ContenedorDeCalificaciones:
 	def __init__(self):
 		self.categorias = []
-	
+
 	def agregarCategoria(self, categoria):
 		self.categorias.append(categoria)
 
