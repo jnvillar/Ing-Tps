@@ -12,6 +12,8 @@ class Aplicacion:
         #registroAdmins = []
         registroDeCategorias = []
 
+        registroDeCalificaciones = []
+
         calificador = Calificador()
         registrador = Registrador()
         filtro = Filtro()

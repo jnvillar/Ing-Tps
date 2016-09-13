@@ -7,6 +7,10 @@ class Bar:
 
 	def __eq__ (self, otro):
 		return self.nombre == otro.nombre and self.ubicacion == otro.ubicacion
+ 
+	def __ne__(self, otro):
+    #""" Devuelve si dos puntos son distintos. """
+    return not self == otro
 
 	def darNombre(self):
 		return self.nombre
