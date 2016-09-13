@@ -6,6 +6,14 @@ class Calificacion:
 		self.categoria = cat
 		self.bar = bar
 
+	def __eq__ (self, otro):
+    #""" Devuelve si dos puntos son iguales. """
+    return self.usuario == otro.usuario and self.categoria == otro.categoria and self.bar == otro.bar
+ 
+	def __ne__(self, otro):
+    #""" Devuelve si dos puntos son distintos. """
+    return not self == otro
+
 	def darUsuario(self):
 		return self.usuario
 

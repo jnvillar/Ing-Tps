@@ -4,7 +4,7 @@ class Usuario:
 		self.nombre = nombreUsuario
 		self.ubicacion = (0,0)
 
-	def __eq (self, otro):
+	def __eq__ (self, otro):
     #""" Devuelve si dos puntos son iguales. """
     return self.nombre == otro.nombre
  
