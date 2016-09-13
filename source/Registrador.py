@@ -13,7 +13,7 @@ class Registrador:
 	def buscar(self, dato, registro):
 		encontrado = False
 		for unDato in registro:
-			if unDato.darNombre() == Dato.darNombre(): 
+			if unDato == Dato: 
 				encontrado = True
 		return encontrado
 
