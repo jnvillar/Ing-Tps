@@ -1,4 +1,4 @@
-from Aplicacion.py import *
+from Aplicacion import *
 
 
 def accionAgregarBar(app,user):
@@ -40,7 +40,7 @@ def accionCalificarBar(app,user):
 
 
 
-def accionBuscarBar(app,user):
+def accionBuscarBarCercano(app,user):
 	app.buscarBaresCercanos(user)
 
 
@@ -54,7 +54,11 @@ def cicloPrograma(app,user):
 		if accion == "2":
 			accionCalificarBar(app,user)
 		if accion == "3":
-			accionBuscarBar(app,user)
+			accionBuscarBarCercano(app,user)
+
+
+
+
 
 if __name__ == "__main__":
 	app = Aplicacion()
