@@ -1,19 +1,28 @@
 class Calificacion:
-	def __init__(self, val, user):
+	def __init__(self, val, user, cat, bar):
 		assert(val<6 and 0<val)
 		self.estrellas = val
 		self.usuario = user
+		self.categoria = cat
+		self.bar = bar
 
 	def darUsuario(self):
 		return self.usuario
+
+	def darCategoria(self):
+		return self.categoria
+
+	def darBar(self):
+		return self.bar
+
+	def darValor(self):
+		return self.estrellas
 
 	def modificarValor(self,val,user):
 		assert(val<6 and 0<val)
 		assert(self.usuario == user)
 		self.estrellas = val
 
-	def darValor(self):
-		return self.estrellas
 
 class Categoria:
 	def __init__(self, nombre):
@@ -23,46 +32,50 @@ class Categoria:
 		return self.nombre
 
 # Esto deberìa llamarse tal vez "Categoria"
-class RegistroDeCalificacionesPorCategoriaYBar:
+# class RegistroDeCalificacionesPorCategoriaYBar:
+#
+# 	def __init__(self, categoria, bar):
+# 		# assert(bar exite y categoria es valida)
+# 		self.Categoria = categoria
+# 		self.Bar = bar
+# 		self.contenedorDeCalificaciones = []
+# 
+# 	def agregarCalificacion(self,calificacion):
+# 		self.contenedorDeCalificaciones.append(calificacion)
+#
+# 	def darPromedio(self):
+# 		valores = [unaCalificacion.darValor() for unaCalificacion in self.contenedorDeCalificaciones]
+# 		return float(sum(valores)) / max(len(self.contenedorDeCalificaciones), 1)
+#
+# 		# que solo tome al usuario
+# 	def quitarCalificacion(self,calificacion):
+# 		assert(calificacion in self.contenedorDeCalificaciones)
+# 		self.contenedorDeCalificaciones.remove(calificacion)
+#
+# 		# que solo tome la calificacion nueva
+# 	def modificarCalificacion(self,calificacionNueva):
+# 		assert(calificacion in self.contenedorDeCalificaciones)
+# 		calificacionVieja = self.buscarCalificacionDeUnUsuario(calificacionNueva.darUsuario)
+# 		self.quitarCalificacion(calificacionVieja)
+# 		self.agregarCalificacion(calificacionNueva)
+#
+# 	def buscarCalificacionDeUnUsuario(self,usuario):
+# 		for calificacion in listaDeCalificaciones:
+# 			if calificacion.darUsuario == usuario:
+# 				return calificacion
+#
+# 	def existeCalificacionDeUnUsuario(self,usuario):
+# 		for calificacion in listaDeCalificaciones:
+# 			if calificacion.darUsuario == usuario:
+# 				return True
+# 		return False
+#
+# 	def darBar(self):
+# 		return self.Bar
+#
+# 	def darCategoria(self):
+# 		return self.Categoria
 
-	def __init__(self,categoria,bar):
-		# assert(bar exite y categoria es valida)
-		self.Categoria = categoria
-		self.Bar = bar
-		self.contenedorDeCalificaciones = []
-
-	def agregarCalificacion(self,calificacion):
-		self.contenedorDeCalificaciones.append(calificacion)
-
-	def darPromedio(self):
-		valores = [unaCalificacion.darValor() for unaCalificacion in self.contenedorDeCalificaciones]
-		return float(sum(valores)) / max(len(self.contenedorDeCalificaciones), 1)
-
-		# que solo tome al usuario
-	def quitarCalificacion(self,calificacion):
-		assert(calificacion in self.contenedorDeCalificaciones)
-		self.contenedorDeCalificaciones.remove(calificacion)
-
-		# que solo tome la calificacion nueva
-	def modificarCalificacion(self,calificacionNueva):
-		assert(calificacion in self.contenedorDeCalificaciones)
-		calificacionVieja = self.buscarCalificacionDeUnUsuario(calificacionNueva.darUsuario)
-		self.quitarCalificacion(calificacionVieja)
-		self.agregarCalificacion(calificacionNueva)
-
-	def buscarCalificacionDeUnUsuario(self,usuario):
-		for calificacion in listaDeCalificaciones:
-			if calificacion.darUsuario == usuario:
-				return calificacion
-
-	def existeCalificacionDeUnUsuario(self,usuario):
-		for calificacion in listaDeCalificaciones:
-			if calificacion.darUsuario == usuario:
-				return True
-		return False
-
-	def darNombre(self):
-		return self.nombreDeLaCategoria
 
 #class RegistroDeCategorias:
 	# def __init__(self):
