@@ -58,17 +58,34 @@ def cicloPrograma(app,user):
 
 
 
+def accionRegistrarUsuario(app):
+	while True:
+		nombre = raw_input("Nombre de usuario: ")
+		existe = app.buscarUsuario(nombre)
+		if existe:
+			print "Ya existe el nombre"
+		else:
+			app.registrarUsuario(nombre)
+			return
+	
+
 
 
 if __name__ == "__main__":
 	app = Aplicacion()
 	while True:
-		nombre = raw_input("Nombre de usuario: ")
-		existe = app.buscarUsuario(nombre)
-		if existe:
-			#contrasena = raw_input("Contrasena: ")
-			user = obtenerUsuario(nombre)
-			cicloPrograma(app,user)
+		accion = raw_input("Desea ingresar o registrarse? ")
+		if accion == "ingresar":
+			nombre = raw_input("Nombre de usuario: ")
+			existe = app.buscarUsuario(nombre)
+			if existe:
+				#contrasena = raw_input("Contrasena: ")
+				user = obtenerUsuario(nombre)
+				cicloPrograma(app,user)
+		else if accion == "registrar":
+			accionRegistrarUsuario(app)
+		else:
+			print "Accion invalida"
 		
 
 
