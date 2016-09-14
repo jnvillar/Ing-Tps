@@ -1,6 +1,8 @@
 import sys
 
-class Registrador:
+#TODO: Asserts
+
+class Registrador(object):
 
 	#### Duda: Iniciar Registro de Bares aca, dentro de esta clase
 	def registrar(self, dato, registro):
@@ -14,7 +16,7 @@ class Registrador:
 	def buscar(self, dato, registro):
 		for unDato in registro:
 			if unDato == dato:
-				return True				
+				return True
 		return False
 
 	def eliminar(self, dato, registro):
@@ -29,3 +31,11 @@ class Registrador:
 			self.eliminar(datoViejo, registro)
 			self.registrar(datoNuevo, registro)
 		else: sys.stderr.write('Fallo modificar: El Dato que se intenta modificar no se encuentra cargado en el Sistema \n')
+
+	def darDato(self, dato, registro):
+		existe = self.buscar(dato, registro)
+		if existe:
+			for unDato in registro:
+				if unDato == dato:
+					return unDato
+		else: sys.stderr.write('Fallo eliminar: El Dato no se encuentra cargado en el Sistema \n')

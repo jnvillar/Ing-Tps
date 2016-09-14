@@ -1,7 +1,7 @@
 # -*- coding: latin-1 -*-
-class Calificacion:
+class Calificacion(object):
 	def __init__(self, val, user, cat, bar):
-		assert(val<6 and 0<val)
+		assert(val<6 and val>0)
 		self.estrellas = val
 		self.usuario = user
 		self.categoria = cat
@@ -33,7 +33,7 @@ class Calificacion:
 		self.estrellas = val
 
 
-class Categoria:
+class Categoria(object):
 	def __init__(self, nombre):
 		assert(type(nombre) == str)
 		self.nombre = nombre

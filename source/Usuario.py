@@ -1,4 +1,4 @@
-class Usuario:
+class Usuario(object):
 
 	def __init__(self, nombreUsuario):
 		self.nombre = nombreUsuario

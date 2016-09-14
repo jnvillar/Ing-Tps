@@ -6,8 +6,9 @@ from Calificaciones import *
 from Directorio import *
 from Registrador import *
 from Filtrar import *
+from Ubicacion import *
 
-class Dispacher:
+class Dispacher(object):
 
     def __init__(self):
 
@@ -24,18 +25,22 @@ class Dispacher:
     def buscarUsuario(self, nombreUsuario):
         return self.registrador.buscar(Usuario(nombreUsuario), self.directorio.darRegistroUsuarios())
 
+    def obtenerUsuario(self, nombreUsuario):
+        return self.registrador.darDato(Usuario(nombreUsuario), self.directorio.darRegistroUsuarios())
+        #self.directorio.darRegistroUsuarios()
+
     def agregarBar(self, usuario, nombreBar, ubicacion, tieneWiFi, puntajeWiFi, puntajeEnchufes):
         nuevoBar = Bar(nombreBar, ubicacion, tieneWiFi)
         self.registrador.registrar(nuevoBar, self.directorio.darRegistroBares())
 
         if tieneWiFi:
-            categoriaWiFi = ([unaCategoria for unaCategoria in registroDeCategorias if unaCategoria.darNombre() == "WiFi"])[0]
+            categoriaWiFi = ([unaCategoria for unaCategoria in self.directorio.darRegistroDeCategorias() if unaCategoria.darNombre() == "WiFi"])[0]
             calificacion = Calificacion(puntajeWiFi, usuario, categoriaWiFi, nuevoBar)
-            registrador.registrar(calificacion, self.directorio.darRegistroDeCalificaciones())
+            self.registrador.registrar(calificacion, self.directorio.darRegistroDeCalificaciones())
 
-        categoriaEnchufes = ([unaCategoria for unaCategoria in registroDeCategorias if unaCategoria.darNombre() == "Enchufes"])[0]
+        categoriaEnchufes = ([unaCategoria for unaCategoria in self.directorio.darRegistroDeCategorias() if unaCategoria.darNombre() == "Enchufes"])[0]
         calificacion = Calificacion(puntajeEnchufes, usuario, categoriaEnchufes, nuevoBar)
-        registrador.registrar(calificacion, self.directorio.darRegistroDeCalificaciones())
+        self.registrador.registrar(calificacion, self.directorio.darRegistroDeCalificaciones())
 
     def agregarCategoria(self, nombreDeLaCategoria):
         self.registrador.registrar(Categoria(nombreDeLaCategoria), self.directorio.darRegistroDeCategorias())
@@ -46,9 +51,9 @@ class Dispacher:
         calificacion = Calificacion(puntaje, usuario, categoria, bar)
         if (registrador.buscar(calificacion)):
         	# MAGIA NEGRA: Las calificaciones son iguales, aún con puntajes distintos. Entonces, modifico mi "misma" calificación
-        	registrador.modificar(calificacion, calificacion, self.directorio.darRegistroDeCalificaciones())
+        	self.registrador.modificar(calificacion, calificacion, self.directorio.darRegistroDeCalificaciones())
         else:
-        	registrador.registrar(calificacion, self.directorio.darRegistroDeCalificaciones())
+        	self.registrador.registrar(calificacion, self.directorio.darRegistroDeCalificaciones())
 
     # fijarse si es necesario chequear si bar y categoria son correctos
     # def chequearBar(nombreBar)

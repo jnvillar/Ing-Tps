@@ -1,18 +1,36 @@
+# -*- coding: latin-1 -*-
 from Dispacher import *
-
 
 def accionAgregarBar(app,user):
 	nombreBar = raw_input("Nombre del bar: ")
-	existe = app.buscarBar(nombreBar)
-	if existe:
-		print "Ya existe el bar"
-		return
-	hayWifi = raw_input("Tiene WiFi? ")
-	puntajeWiFi = 0
-	if hayWifi == "Si":
-		puntajeWiFi = input("Calificacion del WiFi: ")
+	hayWifi = ""
 
-	puntajeEnchufes = input("Calificacion de los enchufes: ")
+	tieneWiFi = False
+	while not (hayWifi == "Si" or hayWifi == "No"):
+		hayWifi = raw_input("Tiene WiFi? (Si/No) ")
+		if hayWifi != "Si" and hayWifi != "No":
+			print "Elija Si o No."
+	puntajeWiFi = 0
+
+	X = int(raw_input("Dònde queda? (X): "))
+	Y = int(raw_input("Dònde queda? (Y): "))
+	ubicacion = Ubicacion(X, Y)	
+
+	if hayWifi == "Si":
+		while (puntajeWiFi < 1 or puntajeWiFi > 5):
+			puntajeWiFi = int(input("Calificacion del WiFi (1 a 5): "))
+			if puntajeWiFi < 1 or puntajeWiFi > 5:
+				print "La calificaciòn debe estar entre 1 y 5"
+		tieneWiFi = True
+
+	puntajeEnchufes = 0
+	while (puntajeEnchufes < 1 or puntajeEnchufes > 5):
+		puntajeEnchufes = int(input("Calificacion de los enchufes (1 a 5): "))
+		if puntajeEnchufes < 1 or puntajeEnchufes > 5:
+			print "La calificaciòn debe estar entre 1 y 5"
+
+
+	app.agregarBar(user, nombreBar, ubicacion, tieneWiFi, puntajeWiFi, puntajeEnchufes)
 
 def accionCalificarBar(app,user):
 	nombreBar = raw_input("Nombre del bar: ")
@@ -80,7 +98,7 @@ if __name__ == "__main__":
 			existe = app.buscarUsuario(nombre)
 			if existe:
 				#contrasena = raw_input("Contrasena: ")
-				user = obtenerUsuario(nombre)
+				user = app.obtenerUsuario(nombre)
 				cicloPrograma(app,user)
 			else:
 				print "El usuario ingresado no existe"

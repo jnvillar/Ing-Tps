@@ -1,6 +1,6 @@
 import math
 
-class Filtrar:
+class Filtrar(object):
 
 	def porDistancia(self, puntoDado, RegistroBares, rango):
 		BaresCercanos = [unBar for unBar in RegistroBares if self.distancia(puntoDado, unBar.darUbicacion()) < rango]
@@ -19,5 +19,4 @@ class Filtrar:
 
 	##### Falta hacer dicha funcion, que no se donde deberia ir. ######
 	def promedio(self, Categoria, Bar):
-		return 0 
-
+		return 0

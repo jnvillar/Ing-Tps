@@ -1,4 +1,6 @@
-class Bar:
+from Ubicacion import *
+
+class Bar(object):
 
 	def __init__(self, nombreBar, ubicacionBar, wiFi):
 		assert(type(ubicacionBar) == Ubicacion and type(wiFi) == bool and type(nombreBar) ==  str)
@@ -8,7 +10,7 @@ class Bar:
 
 	def __eq__ (self, otro):
 		return self.nombre == otro.nombre and self.ubicacion == otro.ubicacion
- 
+
 	def __ne__(self, otro):
     		#""" Devuelve si dos puntos son distintos. """
     		return not self == otro

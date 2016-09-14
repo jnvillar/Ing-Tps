@@ -1,9 +1,14 @@
-class Directorio:
+from Calificaciones import *
+
+class Directorio(object):
 	def __init__(self):
 		self.registroBares = []
 		self.registroUsuarios = []
 		self.registroAdmins = []
-		self.registroDeCategorias = []
+
+		catWiFi = Categoria("WiFi")
+		catEnchufes = Categoria("Enchufes")
+		self.registroDeCategorias = [catWiFi, catEnchufes]
 		self.registroDeCalificaciones = []
 
 	def darRegistroBares(self):
