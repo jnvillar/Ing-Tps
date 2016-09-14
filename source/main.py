@@ -82,6 +82,8 @@ if __name__ == "__main__":
 				#contrasena = raw_input("Contrasena: ")
 				user = obtenerUsuario(nombre)
 				cicloPrograma(app,user)
+			else:
+				print "El usuario ingresado no existe"
 		elif accion == "registrar":
 			accionRegistrarUsuario(app)
 		else:

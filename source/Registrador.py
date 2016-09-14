@@ -7,16 +7,15 @@ class Registrador:
 		assert(type(registro) == list)
 		repetido = self.buscar(dato, registro)
 		#repetido = Bar.darNombre() in [ unBar.darNombre() for unBar in RegistroBares]
-		if not repetido : 
+		if not repetido :
 			registro.append(dato)
 		else: sys.stderr.write('Fallo registrar: El Dato ya se encuentra cargado en el Sistema \n')
 
 	def buscar(self, dato, registro):
-		encontrado = False
 		for unDato in registro:
-			if unDato == Dato: 
-				encontrado = True
-		return encontrado
+			if unDato == dato:
+				return True				
+		return False
 
 	def eliminar(self, dato, registro):
 		existe = self.buscar(datoViejo, registro)
@@ -30,6 +29,3 @@ class Registrador:
 			self.eliminar(datoViejo, registro)
 			self.registrar(datoNuevo, registro)
 		else: sys.stderr.write('Fallo modificar: El Dato que se intenta modificar no se encuentra cargado en el Sistema \n')
-
-
-	
