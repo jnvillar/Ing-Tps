@@ -20,3 +20,11 @@ class Filtrar(object):
 	##### Falta hacer dicha funcion, que no se donde deberia ir. ######
 	def promedio(self, Categoria, Bar):
 		return 0
+
+	def darUsuario(self, nombreUsuario, registroUsuarios):
+		usuario = [unUsuario for unUsuario in registroUsuarios if unUsuario.darNombre() == nombreUsuario][0]
+		return usuario
+
+	def darBaresConMismoNombre(self, nombreBar, registroBares):
+		baresMismoNombre = [unBar for unBar in registroBares if unBar.darNombre() == nombreBar]
+		return baresMismoNombre	

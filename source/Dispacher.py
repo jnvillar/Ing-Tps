@@ -25,8 +25,11 @@ class Dispacher(object):
     def buscarUsuario(self, nombreUsuario):
         return self.registrador.buscar(Usuario(nombreUsuario), self.directorio.darRegistroUsuarios())
 
+    def obtenerBaresMismoNombre(self, nombreBar):
+        return self.filtro.darBaresConMismoNombre(nombreBar, self.directorio.darRegistroBares())
+
     def obtenerUsuario(self, nombreUsuario):
-        return self.registrador.darDato(Usuario(nombreUsuario), self.directorio.darRegistroUsuarios())
+        return self.filtro.darUsuario(nombreUsuario, self.directorio.darRegistroUsuarios())
         #self.directorio.darRegistroUsuarios()
 
     def agregarBar(self, usuario, nombreBar, ubicacion, tieneWiFi, puntajeWiFi, puntajeEnchufes):

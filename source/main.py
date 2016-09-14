@@ -14,7 +14,7 @@ def accionAgregarBar(app,user):
 
 	X = int(raw_input("Dònde queda? (X): "))
 	Y = int(raw_input("Dònde queda? (Y): "))
-	ubicacion = Ubicacion(X, Y)	
+	ubicacion = Ubicacion(X, Y)
 
 	if hayWifi == "Si":
 		while (puntajeWiFi < 1 or puntajeWiFi > 5):
@@ -34,9 +34,16 @@ def accionAgregarBar(app,user):
 
 def accionCalificarBar(app,user):
 	nombreBar = raw_input("Nombre del bar: ")
-	existe = app.buscarBar(nombreBar)
+	baresMismoNombre = app.obtenerBaresMismoNombre(nombreBar)
+	existe = len(baresMismoNombre) > 0
 	if not existe:
 		print "No existe el bar"
+
+	i = 0
+	for unBar in baresMismoNombre:
+		print i,". ","Bar: ", unBar.darNombre(), "Ubicacion: ", unBar.darUbicacion(), "Tiene WiFi: ", unBar.hayWiFi()
+		i=i+1
+
 	barCalificar = app.obtenerBar(nombreBar)
 
 	categorias = app.obtenerCategorias()

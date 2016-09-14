@@ -32,10 +32,10 @@ class Registrador(object):
 			self.registrar(datoNuevo, registro)
 		else: sys.stderr.write('Fallo modificar: El Dato que se intenta modificar no se encuentra cargado en el Sistema \n')
 
-	def darDato(self, dato, registro):
-		existe = self.buscar(dato, registro)
-		if existe:
-			for unDato in registro:
-				if unDato == dato:
-					return unDato
-		else: sys.stderr.write('Fallo eliminar: El Dato no se encuentra cargado en el Sistema \n')
+	#def darDato(self, dato, registro):
+	#	existe = self.buscar(dato, registro)
+	#	if existe:
+	#		for unDato in registro:
+	#			if unDato == dato:
+	#				return unDato
+	#	else: sys.stderr.write('Fallo eliminar: El Dato no se encuentra cargado en el Sistema \n')
