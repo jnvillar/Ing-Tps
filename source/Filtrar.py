@@ -7,7 +7,8 @@ class Filtrar(object):
 		return BaresCercanos
 
 	def distancia(self, puntoDado, ubicacionBar):
-		return math.hypot(ubicacionBar[0] - puntoDado[0], ubicacionBar[1] - puntoDado[1])
+
+		return math.hypot(ubicacionBar.darCoordenadaX() - puntoDado.darCoordenadaX(), ubicacionBar.darCoordenadaY() - puntoDado.darCoordenadaY())
 
 	def porWifi(self, RegistroBares):
 		BaresConWiFi = [unBar for unBar in RegistroBares if unBar.tieneWifi()]
@@ -27,4 +28,8 @@ class Filtrar(object):
 
 	def darBaresConMismoNombre(self, nombreBar, registroBares):
 		baresMismoNombre = [unBar for unBar in registroBares if unBar.darNombre() == nombreBar]
-		return baresMismoNombre	
+		return baresMismoNombre
+
+	def darCategoria(self, nombreCategoria, registroCategorias):
+		categoria = [unaCategoria for unaCategoria in registroCategorias if unaCategoria.darNombre() == nombreCategoria][0]
+		return categoria	

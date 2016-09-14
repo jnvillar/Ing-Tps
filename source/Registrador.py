@@ -20,7 +20,7 @@ class Registrador(object):
 		return False
 
 	def eliminar(self, dato, registro):
-		existe = self.buscar(datoViejo, registro)
+		existe = self.buscar(dato, registro)
 		if existe:
 			registro.remove(dato)
 		else: sys.stderr.write('Fallo eliminar: El Dato no se encuentra cargado en el Sistema \n')

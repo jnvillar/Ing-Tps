@@ -13,3 +13,10 @@ class Ubicacion(object):
 
 	def  darCoordenadaY(self):
 		return self.coordenadaY
+
+	def __str__(self):
+		x = self.coordenadaX
+		y = self.coordenadaY
+		return 	"(%d,%d)" % (x,y)
+
+
