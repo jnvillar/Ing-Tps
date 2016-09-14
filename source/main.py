@@ -1,4 +1,4 @@
-from Aplicacion import *
+from Dispacher import *
 
 
 def accionAgregarBar(app,user):
@@ -67,12 +67,12 @@ def accionRegistrarUsuario(app):
 		else:
 			app.registrarUsuario(nombre)
 			return
-	
+
 
 
 
 if __name__ == "__main__":
-	app = Aplicacion()
+	app = Dispacher()
 	while True:
 		accion = raw_input("Desea ingresar o registrarse? ")
 		if accion == "ingresar":
@@ -82,10 +82,7 @@ if __name__ == "__main__":
 				#contrasena = raw_input("Contrasena: ")
 				user = obtenerUsuario(nombre)
 				cicloPrograma(app,user)
-		else if accion == "registrar":
+		elif accion == "registrar":
 			accionRegistrarUsuario(app)
 		else:
 			print "Accion invalida"
-		
-
-

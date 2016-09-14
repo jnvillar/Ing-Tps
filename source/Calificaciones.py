@@ -1,3 +1,4 @@
+# -*- coding: latin-1 -*-
 class Calificacion:
 	def __init__(self, val, user, cat, bar):
 		assert(val<6 and 0<val)
@@ -7,12 +8,12 @@ class Calificacion:
 		self.bar = bar
 
 	def __eq__ (self, otro):
-    #""" Devuelve si dos puntos son iguales. """
-    return self.usuario == otro.usuario and self.categoria == otro.categoria and self.bar == otro.bar
- 
+		#""" Devuelve si dos puntos son iguales. """
+		return self.usuario == otro.usuario and self.categoria == otro.categoria and self.bar == otro.bar
+
 	def __ne__(self, otro):
-    #""" Devuelve si dos puntos son distintos. """
-    return not self == otro
+		#""" Devuelve si dos puntos son distintos. """
+		return not self == otro
 
 	def darUsuario(self):
 		return self.usuario
@@ -48,7 +49,7 @@ class Categoria:
 # 		self.Categoria = categoria
 # 		self.Bar = bar
 # 		self.contenedorDeCalificaciones = []
-# 
+#
 # 	def agregarCalificacion(self,calificacion):
 # 		self.contenedorDeCalificaciones.append(calificacion)
 #

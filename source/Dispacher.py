@@ -1,17 +1,20 @@
-import Bar
-import Usuario
-import Calificaciones
-import Registrador
+# -*- coding: latin-1 -*-
+
+from Bar import *
+from Usuario import *
+from Calificaciones import *
+from Directorio import *
+from Registrador import *
+from Filtrar import *
 
 class Dispacher:
 
     def __init__(self):
 
        #Estas cosas deberian crearse en el main, no en el dispacher
-
         directorio = Directorio()
         registrador = Registrador()
-        filtro = Filtro()
+        filtro = Filtrar()
 
     def registrarUsuario(self, nombreUsuario):
         self.registrador.registrar(nombreUsuario, directorio.darRegistroUsuarios())
@@ -31,7 +34,7 @@ class Dispacher:
         calificacion = Calificacion(puntajeEnchufes, usuario, categoriaEnchufes, nuevoBar)
         registrador.registrar(calificacion, directorio.darRegistroDeCalificaciones())
 
-    def agregarCategoria(self, nombreDeLaCategoria): 
+    def agregarCategoria(self, nombreDeLaCategoria):
         self.registrador.registrar(Categoria(nombreDeLaCategoria), directorio.darRegistroDeCategorias())
 
     def calificarBar(self, usuario, bar, categoria, puntaje):
@@ -41,7 +44,7 @@ class Dispacher:
         if (registrador.buscar(calificacion)):
         	# MAGIA NEGRA: Las calificaciones son iguales, aún con puntajes distintos. Entonces, modifico mi "misma" calificación
         	registrador.modificar(calificacion, calificacion, directorio.darRegistroDeCalificaciones())
-        else: 
+        else:
         	registrador.registrar(calificacion, directorio.darRegistroDeCalificaciones())
 
     # fijarse si es necesario chequear si bar y categoria son correctos
