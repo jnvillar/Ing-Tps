@@ -22,7 +22,7 @@ class Dispacher:
         #self.registrador.registrar(nombreUsuario, registroAdmins)
 
     def buscarUsuario(self, nombreUsuario):
-        self.registrador.buscar(Usuario(nombreUsuario), self.directorio.darRegistroUsuarios())
+        return self.registrador.buscar(Usuario(nombreUsuario), self.directorio.darRegistroUsuarios())
 
     def agregarBar(self, usuario, nombreBar, ubicacion, tieneWiFi, puntajeWiFi, puntajeEnchufes):
         nuevoBar = Bar(nombreBar, ubicacion, tieneWiFi)
