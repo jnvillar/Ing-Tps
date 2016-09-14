@@ -1,6 +1,7 @@
 class Bar:
 
 	def __init__(self, nombreBar, ubicacionBar, wiFi):
+		assert(type(ubicacionBar) == Ubicacion and type(wiFi) == bool and type(nombreBar) ==  str)
 		self.nombre = nombreBar
 		self.ubicacion = ubicacionBar
 		self.hayWiFi = wiFi
@@ -9,8 +10,8 @@ class Bar:
 		return self.nombre == otro.nombre and self.ubicacion == otro.ubicacion
  
 	def __ne__(self, otro):
-    #""" Devuelve si dos puntos son distintos. """
-    return not self == otro
+    		#""" Devuelve si dos puntos son distintos. """
+    		return not self == otro
 
 	def darNombre(self):
 		return self.nombre

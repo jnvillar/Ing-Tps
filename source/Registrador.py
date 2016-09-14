@@ -4,6 +4,7 @@ class Registrador:
 
 	#### Duda: Iniciar Registro de Bares aca, dentro de esta clase
 	def registrar(self, dato, registro):
+		assert(type(registro) == list)
 		repetido = self.buscar(dato, registro)
 		#repetido = Bar.darNombre() in [ unBar.darNombre() for unBar in RegistroBares]
 		if not repetido : 

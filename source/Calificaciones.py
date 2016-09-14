@@ -34,6 +34,7 @@ class Calificacion:
 
 class Categoria:
 	def __init__(self, nombre):
+		assert(type(nombre) == str)
 		self.nombre = nombre
 
 	def darNombre(self):
