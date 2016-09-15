@@ -48,13 +48,19 @@ def accionAgregarBar(app,user):
 	print "Bar agregado \n"
 
 def accionCalificarBar(app,user):
-	
+
 	nombreBar = raw_input("Nombre del bar: ")
 	baresMismoNombre = app.obtenerBaresMismoNombre(nombreBar)
 	existe = len(baresMismoNombre) > 0
 	if not existe:
+<<<<<<< HEAD
 		print "No existe el bar \n"
 		return
+=======
+		print "No existe el bar"
+        return
+
+>>>>>>> 29e8d85a834a19967ec698ca0fdb92841254e5f0
 	i = 0
 	for unBar in baresMismoNombre:
 		print i,". ","Bar: ", unBar.darNombre(), " -- Ubicacion: ", unBar.darUbicacion(), " -- Tiene WiFi: ", unBar.tieneWifi()
@@ -74,7 +80,7 @@ def accionCalificarBar(app,user):
 
 
 	while quieroCalificarCategoria:
-		
+
 		categorias = app.obtenerCategorias()
 		print "Elegir Categoria"
 		indice = 0
@@ -99,15 +105,15 @@ def accionCalificarBar(app,user):
 
 		if decision == "n" : quieroCalificarCategoria = False
 
-		
-	
+
+
 	#if app.existeCategoria(categoria):
 	#	categoriaCalificar = app.obtenerCategoria(categoria)
 	#else:
 	#	print "No existe categoria"
 	#	return
 
-	
+
 
 
 
@@ -177,11 +183,10 @@ if __name__ == "__main__":
 				print "El usuario ingresado no existe"
 		elif accion == "r":
 			accionRegistrarUsuario(app)
-		
+
 		elif accion == "q":
 			print "Gracias por usar la App"
 			exit(0)
 
 		else:
 			print "Accion invalida"
-
