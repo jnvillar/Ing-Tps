@@ -1,6 +1,16 @@
 # -*- coding: latin-1 -*-
 from Dispacher import *
 
+def esValorValido(menorA,mayorA,string):
+	Valido = True
+	while(Valido):
+		eleccion = int(raw_input(string))
+		if eleccion>=menorA and eleccion<=mayorA:
+			Valido = False
+		else:
+			print "Valor no Valido, por favor intente de nuevo\n"
+	return eleccion
+
 def accionAgregarBar(app,user):
 	puntajes = []
 	nombreBar = raw_input("Nombre del bar: ")
@@ -35,6 +45,7 @@ def accionAgregarBar(app,user):
 
 	nuevoBar = Bar(nombreBar, ubicacion, tieneWiFi)
 	app.agregarBar(user,nuevoBar, puntajes)
+	print "Bar agregado \n"
 
 def accionCalificarBar(app,user):
 	
@@ -42,13 +53,21 @@ def accionCalificarBar(app,user):
 	baresMismoNombre = app.obtenerBaresMismoNombre(nombreBar)
 	existe = len(baresMismoNombre) > 0
 	if not existe:
-		print "No existe el bar"
-
+		print "No existe el bar \n"
+		return
 	i = 0
 	for unBar in baresMismoNombre:
-		print i,". ","Bar: ", unBar.darNombre(), "Ubicacion: ", unBar.darUbicacion(), "Tiene WiFi: ", unBar.tieneWifi()
+		print i,". ","Bar: ", unBar.darNombre(), " -- Ubicacion: ", unBar.darUbicacion(), " -- Tiene WiFi: ", unBar.tieneWifi()
 		i=i+1
-	eleccion = int(raw_input("Ingrese indice de bar deseado: "))
+
+	valorValido = True
+	while(valorValido):
+		eleccion = int(raw_input("Ingrese indice de bar deseado: "))
+		if eleccion>=len(baresMismoNombre) or eleccion<0:
+			print "Valor no Valido, por favor intente de nuevo\n"
+		else:
+			valorValido = False
+
 	barCalificar = baresMismoNombre[eleccion]
 
 	quieroCalificarCategoria = True
@@ -62,11 +81,12 @@ def accionCalificarBar(app,user):
 		for cat in categorias:
 			print indice, ". ", cat.darNombre()
 			indice = indice+1
-
-		eleccion =  int(raw_input("Ingrese Categoria deseada: "))
+	
+		esValorValido(0,len(categorias)-1,"Ingrese Categoria deseada:")
 		categoriaCalificar = categorias[eleccion]
 
 		puntajeBar = input("Puntaje (1-5): ")
+		
 		# creo aca el objeto calificacion o se hacer despues?
 		app.calificarBar(user,barCalificar,categoriaCalificar,puntajeBar)
 
@@ -96,6 +116,9 @@ def accionBuscarBarCercano(app):
 	Y = int(raw_input("Dame tu posición (Y): "))
 	puntoDado = Ubicacion(X, Y)
 	baresCercanos = app.buscarBaresCercanos(puntoDado)
+	if len(baresCercanos) == 0:
+		print "No hay bares Cercanos \n"
+		return
 	i = 0
 	for unBar in baresCercanos:
 		print i,". ","Bar: ", unBar.darNombre(), "Ubicacion: ", unBar.darUbicacion(), "Tiene WiFi: ", unBar.tieneWifi()
