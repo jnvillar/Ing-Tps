@@ -53,14 +53,8 @@ def accionCalificarBar(app,user):
 	baresMismoNombre = app.obtenerBaresMismoNombre(nombreBar)
 	existe = len(baresMismoNombre) > 0
 	if not existe:
-<<<<<<< HEAD
 		print "No existe el bar \n"
 		return
-=======
-		print "No existe el bar"
-        return
-
->>>>>>> 29e8d85a834a19967ec698ca0fdb92841254e5f0
 	i = 0
 	for unBar in baresMismoNombre:
 		print i,". ","Bar: ", unBar.darNombre(), " -- Ubicacion: ", unBar.darUbicacion(), " -- Tiene WiFi: ", unBar.tieneWifi()
@@ -75,15 +69,18 @@ def accionCalificarBar(app,user):
 			valorValido = False
 
 	barCalificar = baresMismoNombre[eleccion]
-
+	tieneInternet = barCalificar.tieneWifi()
 	quieroCalificarCategoria = True
-
+	categorias = app.obtenerCategorias()
+	if not tieneInternet:
+		del categorias[0]
 
 	while quieroCalificarCategoria:
 
-		categorias = app.obtenerCategorias()
+		
 		print "Elegir Categoria"
 		indice = 0
+
 		for cat in categorias:
 			print indice, ". ", cat.darNombre()
 			indice = indice+1
