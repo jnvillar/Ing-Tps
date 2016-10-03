@@ -5,7 +5,7 @@ from Usuario import *
 from Calificaciones import *
 from Directorio import *
 from Registrador import *
-from Filtrar import *
+from Filtrador import *
 from Ubicacion import *
 
 class Dispacher(object):
@@ -15,7 +15,7 @@ class Dispacher(object):
        #Estas cosas deberian crearse en el main, no en el dispacher
         self.directorio = Directorio()
         self.registrador = Registrador()
-        self.filtro = Filtrar()
+        self.filtrador = Filtrador()
 
 
     def registrarUsuario(self, nombreUsuario):
@@ -27,21 +27,22 @@ class Dispacher(object):
         return self.directorio.darRegistroDeCategorias()
 
     def buscarUsuario(self, nombreUsuario):
-        return self.registrador.buscar(Usuario(nombreUsuario), self.directorio.darRegistroUsuarios())
+        return self.registrador.pertenece(Usuario(nombreUsuario), self.directorio.darRegistroUsuarios())
 
     def obtenerBaresMismoNombre(self, nombreBar):
-        return self.filtro.darBaresConMismoNombre(nombreBar, self.directorio.darRegistroBares())
+        filtros = [FiltroNombreBares(nombreBar)]
+        return self.filtrador.filtrarBares(self.directorio,filtros)
 
     def obtenerUsuario(self, nombreUsuario):
-        return self.filtro.darUsuario(nombreUsuario, self.directorio.darRegistroUsuarios())
-        #self.directorio.darRegistroUsuarios()
+        filtro = FiltroNombreUsuario(nombreUsuario)
+        return self.filtrador.buscar(self.directorio.darRegistroUsuarios(),filtro)
 
     def agregarBar(self, usuario, bar , puntajes):
 
         self.registrador.registrar(bar, self.directorio.darRegistroBares())
 
-        categoriaWiFi = self.filtro.darCategoria("WiFi", self.directorio.darRegistroDeCategorias())
-        categoriaEnchufes = self.filtro.darCategoria("Enchufes", self.directorio.darRegistroDeCategorias())
+        categoriaWiFi = self.filtrador.buscar(self.directorio.darRegistroDeCategorias(), FiltroNombreCategoria("WiFi"))
+        categoriaEnchufes = self.filtrador.buscar(self.directorio.darRegistroDeCategorias(), FiltroNombreCategoria("Enchufes"))
 
         if bar.tieneWifi():
             self.calificarBar(usuario, bar, categoriaWiFi, puntajes[0])
@@ -66,7 +67,7 @@ class Dispacher(object):
         # chequear si categoria está en categorias
         if not (categoria.darNombre() == "WiFi" and bar.tieneWifi()):
             calificacion = Calificacion(puntaje, usuario, categoria, bar)
-            if (self.registrador.buscar(calificacion,self.directorio.darRegistroDeCalificaciones())):
+            if (self.registrador.pertenece(calificacion,self.directorio.darRegistroDeCalificaciones())):
         	   # MAGIA NEGRA: Las calificaciones son iguales, aún con puntajes distintos. Entonces, modifico mi "misma" calificación
         	   self.registrador.modificar(calificacion, calificacion, self.directorio.darRegistroDeCalificaciones())
             else:
@@ -76,6 +77,10 @@ class Dispacher(object):
     # def chequearBar(nombreBar)
     #    return Bar
 
-    def buscarBaresCercanos(self, puntoDado):
-        baresCercanos = self.filtro.porDistancia(puntoDado, self.directorio.darRegistroBares(), 400)
+    def buscarBaresCercanos(self, puntoDado, distancia):
+        filtro = [FiltroPorDistancia(distancia,puntoDado)]
+        baresCercanos = self.filtrador.filtrarBares(self.directorio,filtro) 
         return baresCercanos
+
+    def filtrarBaresVariosCriterios(self,listaFiltros):
+        return self.filtrador.filtrarBares(self.directorio,listaFiltros)

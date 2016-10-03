@@ -114,11 +114,11 @@ def accionCalificarBar(app,user):
 
 
 
-def accionBuscarBarCercano(app):
+def accionBuscarBarCercano400(app):
 	X = int(raw_input("Dame tu posición (X): "))
 	Y = int(raw_input("Dame tu posición (Y): "))
 	puntoDado = Ubicacion(X, Y)
-	baresCercanos = app.buscarBaresCercanos(puntoDado)
+	baresCercanos = app.buscarBaresCercanos(puntoDado,400)
 	if len(baresCercanos) == 0:
 		print "No hay bares Cercanos \n"
 		return
@@ -127,22 +127,83 @@ def accionBuscarBarCercano(app):
 		print i,". ","Bar: ", unBar.darNombre(), "Ubicacion: ", unBar.darUbicacion(), "Tiene WiFi: ", unBar.tieneWifi()
 		i=i+1
 
+def accionBuscarBarCercano(app):
+	X = int(raw_input("Dame tu posición (X): "))
+	Y = int(raw_input("Dame tu posición (Y): "))
+	distancia = int(raw_input("Dame Distancia: "))
+	puntoDado = Ubicacion(X, Y)
 
+	baresCercanos = app.buscarBaresCercanos(puntoDado,distancia)
+	if len(baresCercanos) == 0:
+		print "No hay bares Cercanos \n"
+		return
+	i = 0
+	for unBar in baresCercanos:
+		print i,". ","Bar: ", unBar.darNombre(), "Ubicacion: ", unBar.darUbicacion(), "Tiene WiFi: ", unBar.tieneWifi()
+		i=i+1
 
+def accionFiltrarBaresVariosCriterios(app):
+	print "Criterios Disponibles \n"
+	print "0. Distancia \n"
+	print "1. Disponibilidad de WiFi \n"
+	i = 2
+	ListaCategorias = app.obtenerCategorias()
+	for categoria in ListaCategorias:		
+		print i,". ","Categoria:  ",categoria.darNombre(),"\n" 
+		i += 1
+
+	masCriterios = True
+	filtros = []
+	while (masCriterios):
+		criterio = int(raw_input("Ingrese Criterio:"))
+		if criterio == 0:
+			distancia = int(raw_input("Ingrese Distancia:"))
+			X = int(raw_input("Dame tu posición (X): "))
+			Y = int(raw_input("Dame tu posición (Y): "))
+			puntoDado = Ubicacion(X, Y)
+			filtros = filtros + [FiltroPorDistancia(distancia,puntoDado)]
+		elif criterio == 1:
+			filtros = filtros + [FiltroPorWiFi()]
+		else:
+			rango = int(raw_input("Ingrese calificacion Minima:"))
+			filtros = filtros + [FiltroPorCategoria(ListaCategorias[criterio-2],rango)]
+		masCriterios = cambiarSNPorTrueFalse(raw_input("Desea agregar otro criterio? s/n: "))
+	
+	baresFiltrados = app.filtrarBaresVariosCriterios(filtros)
+
+	if len(baresFiltrados) == 0:
+		print "No hay bares con los filtros establecidos \n"
+		return
+	i = 0
+	for unBar in baresFiltrados:
+		print i,". ","Bar: ", unBar.darNombre(), "Ubicacion: ", unBar.darUbicacion(), "Tiene WiFi: ", unBar.tieneWifi()
+		i=i+1
+		
+def cambiarSNPorTrueFalse(entrada):
+	if entrada == "s":
+		return True
+	elif entrada == "n":
+		return False
+	else: cambiarSNPorTrueFalse(raw_input("Valor incorrecto, reintente con s/n: "))
+		
 
 
 
 def cicloPrograma(app,user):
 	seguir = True
 	while seguir:
-		print "Elegi accion: \n 1. Agregar Bar \n 2. Calificar Bar \n 3. Buscar Bares a menos de 400m \n d. Desloguearse\n q. Salir del Programa\n"
+		print "Elegi accion: \n 1. Agregar Bar \n 2. Calificar Bar \n 3. Buscar Bares a menos de 400m \n 4. Buscar Bares a menos de una distancia dada \n 5. Filtrar Bares por varios criterios \n d. Desloguearse\n q. Salir del Programa\n"
 		accion = raw_input()
 		if accion == "1":
 			accionAgregarBar(app,user)
 		if accion == "2":
 			accionCalificarBar(app,user)
 		if accion == "3":
+			accionBuscarBarCercano400(app)
+		if accion == "4":
 			accionBuscarBarCercano(app)
+		if accion == "5":
+			accionFiltrarBaresVariosCriterios(app)
 		if accion == "d":
 			seguir = False
 		if accion == "q":
