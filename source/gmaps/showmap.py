@@ -5,6 +5,7 @@ import cv2
 import numpy as np
 import urllib
 from motionless import *
+import webbrowser
 
 # Api key de Andy para static maps
 # AIzaSyCIbENEL7DDZRXa0HgCENU5sXhcXHvWS2s
@@ -28,16 +29,20 @@ road_styles = [{
     }
 }]
 
-dmap = DecoratedMap(style=road_styles)
+#dmap = DecoratedMap(style=road_styles)
+dmap = DecoratedMap()
 dmap.add_marker(LatLonMarker(lat=48.858278, lon=2.294489, label='A'))
 #dmap.add_marker(AddressMarker('Obelisco, Buenos Aires, Argentina',label='A'))
 #dmap.add_marker(AddressMarker('1600 Amphitheatre Parkway Mountain View, CA',label='G'))
 url = dmap.generate_url()
 
+# webbrowser.open(url)
 # Luego abrirla y pasarla a OpenCV
 req = urllib.urlopen(url)
 arr = np.asarray(bytearray(req.read()), dtype=np.uint8)
 img = cv2.imdecode(arr, -1) # 'load it as it is'
 
-while not cv2.waitKey() & 0xff == 27:
-    cv2.imshow('Ubicacion en mapa',img)
+while True:
+    cv2.imshow('Ubicacion en mapa', img)
+    if cv2.waitKey(100) == 27:
+        break
