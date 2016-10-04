@@ -12,4 +12,4 @@ class Mapa(object):
         self.gps = GPS()
 
     def mostrar(self):
-        gps.mostrarRutaEnMapa(self.origen, self.destino)
+        self.gps.mostrarRutaEnMapa(self.origen, self.destino)

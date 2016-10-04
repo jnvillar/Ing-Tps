@@ -2,7 +2,7 @@
 # -*- coding: latin-1 -*-
 
 import urllib
-#import googlemaps
+import googlemaps
 import webbrowser
 from Ubicacion import *
 
