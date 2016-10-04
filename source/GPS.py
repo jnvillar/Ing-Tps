@@ -19,13 +19,13 @@ class GPS(object):
 
         return directions_result[0]['legs'][0]['distance']['value']
 
-    #def address2coord(self, direccion):
-        #return self.gmaps.geocode(direccion)[0]['geometry']['location']
+    def ubicacionACoordenadas(self, ubicacion):
+        return self.gmaps.geocode(ubicacion.darDireccion())[0]['geometry']['location']
 
     def mostrarRutaEnMapa(origen, destino):
 
-        coords_origin = self.address2coord(origen.darDireccion())
-        coords_dest = self.address2coord(destino.darDireccion())
+        coords_origin = self.ubicacionACoordenadas(origen)
+        coords_dest = self.ubicacionACoordenadas(destino)
 
         url = "https://www.google.com.ar/maps/dir/{},{}/{},{}".format(
             coords_origin['lat'],
