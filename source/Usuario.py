@@ -1,3 +1,5 @@
+from Ubicacion import *
+
 class Usuario(object):
 
 	def __init__(self, nombreUsuario):
@@ -19,5 +21,5 @@ class Usuario(object):
 		#	# Actualizar ubicacion
 		return self.ubicacion
 
-	def actualizarUbicacion(self, nuevaDireccion):	
-		self.ubicacion = Ubicacion(nuevaDireccion)
+	def actualizarUbicacion(self, ubicacion):	
+		self.ubicacion = ubicacion

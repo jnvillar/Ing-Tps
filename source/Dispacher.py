@@ -84,3 +84,6 @@ class Dispacher(object):
 
     def filtrarBaresVariosCriterios(self,listaFiltros):
         return self.filtrador.filtrarBares(self.directorio,listaFiltros)
+
+    def obtenerCalificaciones(self, bar):
+        return self.filtrador.buscar(self.directorio.darRegistroDeCalificaciones(), FiltroCalificacionesDeUnBar(bar))
