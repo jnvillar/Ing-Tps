@@ -6,25 +6,29 @@ import numpy as np
 import urllib
 from motionless import *
 from Ubicacion import *
+import googlemaps
 import webbrowser
 
 class Mapa(object):
-    def __init__(self, ubi):
-        self.dmap = DecoratedMap()
-        self.dmap.add_marker(LatLonMarker(lat=ubi.darCoordenadaX(), lon=ubi.darCoordenadaY(), label='B'))
+    #habria que hacer que reciba un origen y destino, no con coordenadas
+    def __init__(self, origen, destino):
+        self.gmaps = googlemaps.Client(key='AIzaSyCYMZgZTgYwc2CeJy37REmBjTevjDPBKHA')
+        self.coord_origen = gmaps.geocode(origen)[0]['geometry']['location']
+        self.coord_dest = gmaps.geocode(destino)[0]['geometry']['location']
+        # MacOS
+        # chrome_path = 'open -a /Applications/Google\ Chrome.app %s'
+
+        # Windows
+        # chrome_path = 'C:\Program Files (x86)\Google\Chrome\Application\chrome.exe %s'
+
+        # Linux
+        self.chrome_path = '/usr/bin/google-chrome %s'
 
     def mostrar(self):
-        url = self.dmap.generate_url()
-        # Si se quisiera abrir con el navegador
-        # webbrowser.open(url)
+        url = "https://www.google.com.ar/maps/dir/{},{}/{},{}".format(
+            self.coords_origin['lat'],
+            self.coords_origin['lng'], 
+            self.coords_destination['lat'], 
+            self.coords_destination['lng'])
 
-        # Abrir con OpenCV.
-        # Experimental. Mejor sería usar el browser
-        req = urllib.urlopen(url)
-        arr = np.asarray(bytearray(req.read()), dtype=np.uint8)
-        img = cv2.imdecode(arr, -1)
-
-        while True:
-            cv2.imshow('Ubicacion en mapa', img)
-            if cv2.waitKey(100) == 27:
-                break
+        webbrowser.get(chrome_path).open(url)
