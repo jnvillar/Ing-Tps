@@ -24,3 +24,11 @@ url = "https://www.google.com.ar/maps/dir/{},{}/{},{}".format(coords_origin['lat
 chrome_path = '/usr/bin/google-chrome %s'
 
 webbrowser.get(chrome_path).open(url)
+
+#obtener la distancia entre origen y destino
+directions_result = gmaps.directions(origin="Costa Rica 4677, Ciudad Autonoma de Buenos Aires",
+                                     destination="Gorriti 5037",
+                                     mode="walking",
+                                     alternatives= False)
+
+print directions_result[0]['legs'][0]['distance']['value']
