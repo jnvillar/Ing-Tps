@@ -1,23 +1,21 @@
 # -*- coding: latin-1 -*-
 from Dispacher import *
 
-def esValorValido(menorA,mayorA,string):
-	Valido = True
-	while(Valido):
-		eleccion = int(raw_input(string))
-		if eleccion>=menorA and eleccion<=mayorA:
-			Valido = False
+def accionRegistrarUsuario(app):
+	while True:
+		nombre = raw_input("Nombre de usuario: ")
+		existe = app.buscarUsuario(nombre)
+		if existe:
+			print "Ya existe el nombre"
 		else:
-			print "Valor no Valido, por favor intente de nuevo\n"
-	return eleccion
+			app.registrarUsuario(nombre)
+			return
 
 def accionAgregarBar(app,user):
 	puntajes = []
 	nombreBar = raw_input("Nombre del bar: ")
-
 	tieneWifi = cambiarSNPorTrueFalse(raw_input("Tiene WiFi? (s/n) "))
-
-	ubicacion = insertarUbicacionBar()
+	ubicacion = insertarUbicacion("Ingrese Direccion del Bar: ")
 
 	if tieneWifi:
 		puntajeWiFi = insertarPuntuacion("Calificacion del WiFi (1 a 5): ")
@@ -25,76 +23,64 @@ def accionAgregarBar(app,user):
 
 	puntajeEnchufes = insertarPuntuacion("Calificación de los enchufes (1 a 5): ")
 	puntajes.append(puntajeEnchufes)
-
 	nuevoBar = Bar(nombreBar, ubicacion, tieneWifi)
 	app.agregarBar(user,nuevoBar, puntajes)
 	print "Bar agregado \n"
 
 def accionCalificarBar(app,user):
-
 	nombreBar = raw_input("Nombre del bar: ")
 	baresMismoNombre = app.obtenerBaresMismoNombre(nombreBar)
 	
-	if len(baresMismoNombre) == 0:
-		print "No existe el bar \n"
+	if(esListaVacia(baresMismoNombre,"No existe el bar \n")):
 		return
+
 	visualizarBares(baresMismoNombre)
 	eleccion = esValorValido(0,len(baresMismoNombre)-1,"Ingrese indice de bar deseado: ")
-
 	barCalificar = baresMismoNombre[eleccion]
 	tieneInternet = barCalificar.tieneWifi()
-	quieroCalificarCategoria = True
 	categorias = app.obtenerCategorias()
 	if not tieneInternet:
 		del categorias[0]
+	quieroCalificarCategoria = True
 
 	while quieroCalificarCategoria:
 		print "Elegir Categoria"
-		visualizarCategorias(categorias)
-	
+		visualizarCategorias(categorias)	
 		eleccion = esValorValido(0,len(categorias)-1,"Ingrese Categoria deseada:")
 		categoriaCalificar = categorias[eleccion]
-
-		puntajeBar = insertarPuntuacion("Puntaje (1-5): ")
-
-		# creo aca el objeto calificacion o se hacer despues?
+		puntajeBar = insertarPuntuacion("Puntaje (1-5): ")		
 		app.calificarBar(user,barCalificar,categoriaCalificar,puntajeBar)
-
 		quieroCalificarCategoria = cambiarSNPorTrueFalse(raw_input("Queres calificar otra categoria de este bar? (s/n): "))
 
 	print "Calificacion realizada \n"
 
 def accionBuscarBarCercano400(app):
-	puntoDado = insertarUbicacionUsuario()
+	puntoDado = insertarUbicacion("Ingrese la direccion deseada")
 	baresCercanos = app.buscarBaresCercanos(puntoDado,400)
-	if len(baresCercanos) == 0:
-		print "No hay bares Cercanos \n"
+	if esListaVacia(baresCercanos,"No hay bares a menos de esa distancia \n"):
 		return
 	visualizarBares(baresCercanos)
 
 def accionBuscarBarCercano(app):
-	puntoDado = insertarUbicacionUsuario()
+	puntoDado = insertarUbicacion("Ingrese la direccion deseada")
 	distancia = int(raw_input("Dame Distancia: "))
-
 	baresCercanos = app.buscarBaresCercanos(puntoDado,distancia)
-	if len(baresCercanos) == 0:
-		print "No hay bares Cercanos \n"
+	if esListaVacia(baresCercanos,"No hay bares a menos de esa distancia \n"):		
 		return
 	visualizarBares(baresCercanos)
 
 def accionFiltrarBaresVariosCriterios(app):
 	ListaCategorias = app.obtenerCategorias()
 	print "Criterios Disponibles \n"
-	visualizarCriterios(ListaCategorias)
-
-	masCriterios = True
-	filtros = []
+	visualizarCriterios(ListaCategorias)		
 	cantidadDeCriterios = len(ListaCategorias) + 2
+	filtros = []
+	masCriterios = True
 	while (masCriterios):
 		criterio = esValorValido(0,cantidadDeCriterios-1,"Ingrese Criterio:")
 		if criterio == 0:
 			distancia = int(raw_input("Ingrese Distancia:"))
-			puntoDado = insertarUbicacionUsuario()
+			puntoDado = insertarUbicacion("Ingrese la direccion deseada")
 			filtros = filtros + [FiltroPorDistancia(distancia,puntoDado)]
 		elif criterio == 1:
 			filtros = filtros + [FiltroPorWiFi()]
@@ -104,12 +90,9 @@ def accionFiltrarBaresVariosCriterios(app):
 		masCriterios = cambiarSNPorTrueFalse(raw_input("Desea agregar otro criterio? s/n: "))
 	
 	baresFiltrados = app.filtrarBaresVariosCriterios(filtros)
-
-	if len(baresFiltrados) == 0:
-		print "No hay bares con los filtros establecidos \n"
-		return
+	if esListaVacia(baresFiltrados,"No hay bares que cumplan con los criterios ingresados \n"):
+		return	
 	visualizarBares(baresFiltrados)
-
 		
 def cambiarSNPorTrueFalse(entrada):
 	if entrada == "s":
@@ -119,17 +102,16 @@ def cambiarSNPorTrueFalse(entrada):
 	else: 
 		return cambiarSNPorTrueFalse(raw_input("Valor incorrecto, reintente con s/n: "))
 
-def insertarUbicacionBar():
-	X = int(raw_input("Dónde queda? (X): "))
-	Y = int(raw_input("Dónde queda? (Y): "))
-	ubicacion = Ubicacion(X, Y)
+def insertarUbicacion(texto):
+	direccion = raw_input(texto)
+	ubicacion = Ubicacion(direccion)
 	return ubicacion
 
-def insertarUbicacionUsuario():
-	X = int(raw_input("Dame tu posición (X): "))
-	Y = int(raw_input("Dame tu posición (Y): "))
-	ubicacion = Ubicacion(X, Y)
-	return ubicacion
+def esListaVacia(lista,texto):
+	if len(lista) == 0:
+		print texto
+		return True
+	return False
 
 def insertarPuntuacion(string):
 	puntaje = 0
@@ -153,6 +135,16 @@ def visualizarCategorias(categorias):
 		indice = indice+1
 	print "\n"
 
+def esValorValido(menorA,mayorA,string):
+	Valido = True
+	while(Valido):
+		eleccion = int(raw_input(string))
+		if eleccion>=menorA and eleccion<=mayorA:
+			Valido = False
+		else:
+			print "Valor no Valido, por favor intente de nuevo\n"
+	return eleccion
+
 def visualizarCriterios(categorias):
 	print "0 .  Distancia"
 	print "1 .  Disponibilidad de WiFi"
@@ -161,7 +153,6 @@ def visualizarCriterios(categorias):
 		print i,". ","Categoria:  ",categoria.darNombre() 
 		i += 1
 	print "\n"
-
 
 def cicloPrograma(app,user):
 	seguir = True
@@ -182,23 +173,6 @@ def cicloPrograma(app,user):
 			seguir = False
 		if accion == "q":
 			exit(0)
-
-
-
-
-
-def accionRegistrarUsuario(app):
-	while True:
-		nombre = raw_input("Nombre de usuario: ")
-		existe = app.buscarUsuario(nombre)
-		if existe:
-			print "Ya existe el nombre"
-		else:
-			app.registrarUsuario(nombre)
-			return
-
-
-
 
 if __name__ == "__main__":
 	app = Dispacher()

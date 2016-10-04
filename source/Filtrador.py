@@ -1,11 +1,9 @@
 import math
+from GPS import *
 
 class Filtrador:
 
 	def filtrarBares(self, directorio,listaDeFiltros):		
-		#for filtro in listaDeFiltros:
-			#assert(type(filtro)==FiltroBares)
-
 		baresFiltrados =  directorio.darRegistroBares()
 		for filtro in listaDeFiltros:			
 			baresFiltrados = filtro.aplicarFiltro(baresFiltrados,directorio)
@@ -24,17 +22,15 @@ class FiltroBares(Filtro):
 		raise NotImplementedError("es una clase abstracta")
 
 class FiltroPorDistancia(FiltroBares):
-	def __init__(self,distancia,puntoDado):
+	def __init__(self,distancia,ubicacionDadaPorElUsuario):
 		self.distanciaMaxima = distancia
-		self.punto = puntoDado
+		self.punto = ubicacionDadaPorElUsuario
 
 	def aplicarFiltro(self, listaBares,directorio):
-		BaresCercanos = [unBar for unBar in listaBares if self.distancia(self.punto, unBar.darUbicacion()) < self.distanciaMaxima]
+		gps = GPS()
+		BaresCercanos = [unBar for unBar in listaBares if gps.distanciaEntre(self.punto, unBar.darUbicacion()) < self.distanciaMaxima]
 		return BaresCercanos
-
-	def distancia(self, puntoDado, ubicacionBar):
-		return math.hypot(ubicacionBar.darCoordenadaX() - puntoDado.darCoordenadaX(), ubicacionBar.darCoordenadaY() - puntoDado.darCoordenadaY())
-
+	
 class FiltroPorWiFi(FiltroBares):
 	def aplicarFiltro(self, listaBares,directorio):
 		BaresConWiFi = [unBar for unBar in listaBares if unBar.tieneWifi()]

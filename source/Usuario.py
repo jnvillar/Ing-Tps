@@ -2,7 +2,7 @@ class Usuario(object):
 
 	def __init__(self, nombreUsuario):
 		self.nombre = nombreUsuario
-		self.ubicacion = (0,0)
+		self.ubicacion = Ubicacion(" ")
 
 	def __eq__(self, otro):
 		#""" Devuelve si dos puntos son iguales. """
@@ -19,5 +19,5 @@ class Usuario(object):
 		#	# Actualizar ubicacion
 		return self.ubicacion
 
-	def actualizarUbicacion(self, nuevaUbicacion):
-		self.ubicacion = nuevaUbicacion
+	def actualizarUbicacion(self, nuevaDireccion):	
+		self.ubicacion = Ubicacion(nuevaDireccion)
