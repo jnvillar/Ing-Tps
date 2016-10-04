@@ -169,15 +169,16 @@ def accionActualizarUbicacionUsuario(app,user):
 	user.actualizarUbicacion(direccion)
 
 def accionBuscarBar(app, user):
-	nombreBar = raw_input("Ingrese Nombre del Bar: ")
-	if esListaVacia(app.obtenerBaresMismoNombre(nombreBar), "No existe el bar \n"):
-		return
-	bar = obtenerBar(nombreBar)
-	visualizarBar(app, bar)
+    nombreBar = raw_input("Ingrese Nombre del Bar: ")
+    if esListaVacia(app.obtenerBaresMismoNombre(nombreBar), "No existe el bar \n"):
+        return
+    bar = obtenerBar(nombreBar)
+    visualizarBar(app, bar)
 
 def visualizarBar(app,bar):
 	visualizarBares([bar])
 	visualizarCalificacionesDeBares(app, bar)
+    #app.mostrarRutaEnMapa(user.darUbicacion(), bar.darUbicacion())
 
 def visualizarCalificacionesDeBares(app, bar):
 	listaCalificaciones = app.obtenerCalificaciones(bar)

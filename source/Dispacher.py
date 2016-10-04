@@ -7,6 +7,7 @@ from Directorio import *
 from Registrador import *
 from Filtrador import *
 from Ubicacion import *
+from Mapa import *
 
 class Dispacher(object):
 
@@ -16,7 +17,6 @@ class Dispacher(object):
         self.directorio = Directorio()
         self.registrador = Registrador()
         self.filtrador = Filtrador()
-
 
     def registrarUsuario(self, nombreUsuario):
         self.registrador.registrar(Usuario(nombreUsuario), self.directorio.darRegistroUsuarios())
@@ -43,7 +43,7 @@ class Dispacher(object):
 
         categoriaWiFi = self.filtrador.buscar(self.directorio.darRegistroDeCategorias(), FiltroNombreCategoria("WiFi"))
         categoriaEnchufes = self.filtrador.buscar(self.directorio.darRegistroDeCategorias(), FiltroNombreCategoria("Enchufes"))
-        
+
         if bar.tieneWifi():
             self.calificarBar(usuario, bar, categoriaWiFi, puntajes[0])
             self.calificarBar(usuario, bar, categoriaEnchufes, puntajes[1])
@@ -79,7 +79,7 @@ class Dispacher(object):
 
     def buscarBaresCercanos(self, puntoDado, distancia):
         filtro = [FiltroPorDistancia(distancia,puntoDado)]
-        baresCercanos = self.filtrador.filtrarBares(self.directorio,filtro) 
+        baresCercanos = self.filtrador.filtrarBares(self.directorio,filtro)
         return baresCercanos
 
     def filtrarBaresVariosCriterios(self,listaFiltros):
@@ -87,3 +87,7 @@ class Dispacher(object):
 
     def obtenerCalificaciones(self, bar):
         return self.filtrador.buscar(self.directorio.darRegistroDeCalificaciones(), FiltroCalificacionesDeUnBar(bar))
+
+    def mostrarRutaEnMapa(self, origen, destino):
+        m = Mapa(origen, destino)
+        m.mostrar()
