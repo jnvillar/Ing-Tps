@@ -41,10 +41,10 @@ def accionCalificarBar(app,user):
 	while quieroCalificarCategoria:
 		print "Elegir Categoría"
 		visualizarCategorias(categorias)
-		eleccion = esValorValido(0,len(categorias)-1,"Ingrese Categoría deseada:")
+		eleccion = esValorValido(0, len(categorias)-1, "Ingrese Categoría deseada: ")
 		categoriaCalificar = categorias[eleccion]
 		puntajeBar = insertarPuntuacion("Puntaje (1-5): ")
-		app.calificarBar(user,barCalificar,categoriaCalificar,puntajeBar)
+		app.calificarBar(user, barCalificar, categoriaCalificar, puntajeBar)
 		quieroCalificarCategoria = cambiarSNPorTrueFalse(raw_input("Querés calificar otra categoría de este bar? (s/n): "))
 
 	print "Calificación realizada \n"
@@ -124,10 +124,13 @@ def insertarPuntuacion(string):
 	return puntaje
 
 def visualizarBares(listaBares):
-	i = 0
-	for unBar in listaBares:
-		print i,". ","Bar: ", unBar.darNombre(), "Ubicación: ", unBar.darUbicacion(), "Tiene WiFi: ", unBar.tieneWifi()
-		i = i+1
+    i = 0
+    for unBar in listaBares:
+        print i,". ","Bar: ", unBar.darNombre(), "Ubicación: ", unBar.darUbicacion(), "Tiene WiFi: ", unBar.tieneWifi()
+        i = i+1
+        # print de las calificaciones?
+        for calificacion in app.obtenerCalificaciones(unBar):
+            print calificacion.darCategoria().darNombre() + ": " + str(calificacion.darValor())
     print "\n"
 
 def visualizarCategorias(categorias):
