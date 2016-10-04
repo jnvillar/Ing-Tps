@@ -128,9 +128,6 @@ def visualizarBares(listaBares):
     for unBar in listaBares:
         print i,". ","Bar: ", unBar.darNombre(), "Ubicación: ", unBar.darUbicacion(), "Tiene WiFi: ", unBar.tieneWifi()
         i = i+1
-        # print de las calificaciones?
-        for calificacion in app.obtenerCalificaciones(unBar):
-            print calificacion.darCategoria().darNombre() + ": " + str(calificacion.darValor())
     print "\n"
 
 def visualizarCategorias(categorias):
