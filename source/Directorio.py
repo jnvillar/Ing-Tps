@@ -5,10 +5,7 @@ class Directorio(object):
 		self.registroBares = []
 		self.registroUsuarios = []
 		self.registroAdmins = []
-
-		catWiFi = Categoria("WiFi")
-		catEnchufes = Categoria("Enchufes")
-		self.registroDeCategorias = [catWiFi, catEnchufes]
+		self.registroDeCategorias = []
 		self.registroDeCalificaciones = []
 
 	def darRegistroBares(self):

@@ -213,7 +213,14 @@ def cicloPrograma(app,user):
 			exit(0)
 
 if __name__ == "__main__":
-	app = Dispacher()
+	app = Dispacher()	
+	app.agregarCategoria("WiFi")
+	app.agregarCategoria("Enchufes")
+	app.agregarCategoria("Baños")
+	app.agregarCategoria("Comida")
+	app.agregarCategoria("Atencion")
+	app.agregarCategoria("Precios")
+	app.agregarCategoria("Cerveza")							
 	while True:
 		accion = raw_input("Desea ingresar o registrarse? i/r  ,q para salir ")
 		if accion == "i":
