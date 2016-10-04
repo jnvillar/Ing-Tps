@@ -14,36 +14,19 @@ def esValorValido(menorA,mayorA,string):
 def accionAgregarBar(app,user):
 	puntajes = []
 	nombreBar = raw_input("Nombre del bar: ")
-	hayWifi = ""
 
-	tieneWiFi = False
-	while not (hayWifi == "s" or hayWifi == "n"):
-		hayWifi = raw_input("Tiene WiFi? (s/n) ")
-		if hayWifi != "s" and hayWifi != "n":
-			print "Elija s o n."
-	puntajeWiFi = 0
+	tieneWifi = cambiarSNPorTrueFalse(raw_input("Tiene WiFi? (s/n) "))
 
-	X = int(raw_input("Dònde queda? (X): "))
-	Y = int(raw_input("Dònde queda? (Y): "))
-	ubicacion = Ubicacion(X, Y)
+	ubicacion = insertarUbicacionBar()
 
-	if hayWifi == "s":
-		while (puntajeWiFi < 1 or puntajeWiFi > 5):
-			puntajeWiFi = int(input("Calificacion del WiFi (1 a 5): "))
-			if puntajeWiFi < 1 or puntajeWiFi > 5:
-				print "La calificaciòn debe estar entre 1 y 5"
-		tieneWiFi = True
+	if tieneWifi:
+		puntajeWiFi = insertarPuntuacion("Calificacion del WiFi (1 a 5): ")
 		puntajes.append(puntajeWiFi)
 
-	puntajeEnchufes = 0
-	while (puntajeEnchufes < 1 or puntajeEnchufes > 5):
-		puntajeEnchufes = int(input("Calificación de los enchufes (1 a 5): "))
-		if puntajeEnchufes < 1 or puntajeEnchufes > 5:
-			print "La calificación debe estar entre 1 y 5"
-
+	puntajeEnchufes = insertarPuntuacion("Calificación de los enchufes (1 a 5): ")
 	puntajes.append(puntajeEnchufes)
 
-	nuevoBar = Bar(nombreBar, ubicacion, tieneWiFi)
+	nuevoBar = Bar(nombreBar, ubicacion, tieneWifi)
 	app.agregarBar(user,nuevoBar, puntajes)
 	print "Bar agregado \n"
 
@@ -51,22 +34,12 @@ def accionCalificarBar(app,user):
 
 	nombreBar = raw_input("Nombre del bar: ")
 	baresMismoNombre = app.obtenerBaresMismoNombre(nombreBar)
-	existe = len(baresMismoNombre) > 0
-	if not existe:
+	
+	if len(baresMismoNombre) == 0:
 		print "No existe el bar \n"
 		return
-	i = 0
-	for unBar in baresMismoNombre:
-		print i,". ","Bar: ", unBar.darNombre(), " -- Ubicacion: ", unBar.darUbicacion(), " -- Tiene WiFi: ", unBar.tieneWifi()
-		i=i+1
-
-	valorValido = True
-	while(valorValido):
-		eleccion = int(raw_input("Ingrese indice de bar deseado: "))
-		if eleccion>=len(baresMismoNombre) or eleccion<0:
-			print "Valor no Valido, por favor intente de nuevo\n"
-		else:
-			valorValido = False
+	visualizarBares(baresMismoNombre)
+	eleccion = esValorValido(0,len(baresMismoNombre)-1,"Ingrese indice de bar deseado: ")
 
 	barCalificar = baresMismoNombre[eleccion]
 	tieneInternet = barCalificar.tieneWifi()
@@ -76,96 +49,57 @@ def accionCalificarBar(app,user):
 		del categorias[0]
 
 	while quieroCalificarCategoria:
-
-		
 		print "Elegir Categoria"
-		indice = 0
-
-		for cat in categorias:
-			print indice, ". ", cat.darNombre()
-			indice = indice+1
+		visualizarCategorias(categorias)
 	
-		esValorValido(0,len(categorias)-1,"Ingrese Categoria deseada:")
+		eleccion = esValorValido(0,len(categorias)-1,"Ingrese Categoria deseada:")
 		categoriaCalificar = categorias[eleccion]
 
-		puntajeBar = input("Puntaje (1-5): ")
-		
+		puntajeBar = insertarPuntuacion("Puntaje (1-5): ")
+
 		# creo aca el objeto calificacion o se hacer despues?
 		app.calificarBar(user,barCalificar,categoriaCalificar,puntajeBar)
 
-		decision = ""
+		quieroCalificarCategoria = cambiarSNPorTrueFalse(raw_input("Queres calificar otra categoria de este bar? (s/n): "))
 
-		while not (decision == "s" or decision == "n"):
-			decision = raw_input("Queres calificar otra categoria de este bar? (s/n): ")
-			if decision != "s" and decision != "n":
-				print "Elija s o n."
-
-		if decision == "n" : quieroCalificarCategoria = False
-
-
-
-	#if app.existeCategoria(categoria):
-	#	categoriaCalificar = app.obtenerCategoria(categoria)
-	#else:
-	#	print "No existe categoria"
-	#	return
-
-
-
-
+	print "Calificacion realizada \n"
 
 def accionBuscarBarCercano400(app):
-	X = int(raw_input("Dame tu posición (X): "))
-	Y = int(raw_input("Dame tu posición (Y): "))
-	puntoDado = Ubicacion(X, Y)
+	puntoDado = insertarUbicacionUsuario()
 	baresCercanos = app.buscarBaresCercanos(puntoDado,400)
 	if len(baresCercanos) == 0:
 		print "No hay bares Cercanos \n"
 		return
-	i = 0
-	for unBar in baresCercanos:
-		print i,". ","Bar: ", unBar.darNombre(), "Ubicacion: ", unBar.darUbicacion(), "Tiene WiFi: ", unBar.tieneWifi()
-		i=i+1
+	visualizarBares(baresCercanos)
 
 def accionBuscarBarCercano(app):
-	X = int(raw_input("Dame tu posición (X): "))
-	Y = int(raw_input("Dame tu posición (Y): "))
+	puntoDado = insertarUbicacionUsuario()
 	distancia = int(raw_input("Dame Distancia: "))
-	puntoDado = Ubicacion(X, Y)
 
 	baresCercanos = app.buscarBaresCercanos(puntoDado,distancia)
 	if len(baresCercanos) == 0:
 		print "No hay bares Cercanos \n"
 		return
-	i = 0
-	for unBar in baresCercanos:
-		print i,". ","Bar: ", unBar.darNombre(), "Ubicacion: ", unBar.darUbicacion(), "Tiene WiFi: ", unBar.tieneWifi()
-		i=i+1
+	visualizarBares(baresCercanos)
 
 def accionFiltrarBaresVariosCriterios(app):
-	print "Criterios Disponibles \n"
-	print "0. Distancia \n"
-	print "1. Disponibilidad de WiFi \n"
-	i = 2
 	ListaCategorias = app.obtenerCategorias()
-	for categoria in ListaCategorias:		
-		print i,". ","Categoria:  ",categoria.darNombre(),"\n" 
-		i += 1
+	print "Criterios Disponibles \n"
+	visualizarCriterios(ListaCategorias)
 
 	masCriterios = True
 	filtros = []
+	cantidadDeCriterios = len(ListaCategorias) + 2
 	while (masCriterios):
-		criterio = int(raw_input("Ingrese Criterio:"))
+		criterio = esValorValido(0,cantidadDeCriterios-1,"Ingrese Criterio:")
 		if criterio == 0:
 			distancia = int(raw_input("Ingrese Distancia:"))
-			X = int(raw_input("Dame tu posición (X): "))
-			Y = int(raw_input("Dame tu posición (Y): "))
-			puntoDado = Ubicacion(X, Y)
+			puntoDado = insertarUbicacionUsuario()
 			filtros = filtros + [FiltroPorDistancia(distancia,puntoDado)]
 		elif criterio == 1:
 			filtros = filtros + [FiltroPorWiFi()]
 		else:
-			rango = int(raw_input("Ingrese calificacion Minima:"))
+			rango = int(raw_input("Ingrese calificacion Minima:")) #hay que chequear que el rango sea valido
 			filtros = filtros + [FiltroPorCategoria(ListaCategorias[criterio-2],rango)]
 		masCriterios = cambiarSNPorTrueFalse(raw_input("Desea agregar otro criterio? s/n: "))
 	
@@ -174,19 +108,59 @@ def accionFiltrarBaresVariosCriterios(app):
 	if len(baresFiltrados) == 0:
 		print "No hay bares con los filtros establecidos \n"
 		return
-	i = 0
-	for unBar in baresFiltrados:
-		print i,". ","Bar: ", unBar.darNombre(), "Ubicacion: ", unBar.darUbicacion(), "Tiene WiFi: ", unBar.tieneWifi()
-		i=i+1
+	visualizarBares(baresFiltrados)
+
 		
 def cambiarSNPorTrueFalse(entrada):
 	if entrada == "s":
 		return True
 	elif entrada == "n":
 		return False
-	else: cambiarSNPorTrueFalse(raw_input("Valor incorrecto, reintente con s/n: "))
-		
+	else: 
+		return cambiarSNPorTrueFalse(raw_input("Valor incorrecto, reintente con s/n: "))
 
+def insertarUbicacionBar():
+	X = int(raw_input("Dónde queda? (X): "))
+	Y = int(raw_input("Dónde queda? (Y): "))
+	ubicacion = Ubicacion(X, Y)
+	return ubicacion
+
+def insertarUbicacionUsuario():
+	X = int(raw_input("Dame tu posición (X): "))
+	Y = int(raw_input("Dame tu posición (Y): "))
+	ubicacion = Ubicacion(X, Y)
+	return ubicacion
+
+def insertarPuntuacion(string):
+	puntaje = 0
+	while (puntaje < 1 or puntaje > 5):
+		puntaje = int(input(string))
+		if puntaje < 1 or puntaje > 5:
+			print "La calificaciòn debe estar entre 1 y 5"
+	return puntaje
+
+def visualizarBares(listaBares):
+	i = 0
+	for unBar in listaBares:
+		print i,". ","Bar: ", unBar.darNombre(), "Ubicacion: ", unBar.darUbicacion(), "Tiene WiFi: ", unBar.tieneWifi()
+		i=i+1
+	print "\n"
+
+def visualizarCategorias(categorias):
+	indice = 0
+	for cat in categorias:
+		print indice, ". ", cat.darNombre()
+		indice = indice+1
+	print "\n"
+
+def visualizarCriterios(categorias):
+	print "0 .  Distancia"
+	print "1 .  Disponibilidad de WiFi"
+	i = 2
+	for categoria in categorias:		
+		print i,". ","Categoria:  ",categoria.darNombre() 
+		i += 1
+	print "\n"
 
 
 def cicloPrograma(app,user):

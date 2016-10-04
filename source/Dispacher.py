@@ -43,7 +43,7 @@ class Dispacher(object):
 
         categoriaWiFi = self.filtrador.buscar(self.directorio.darRegistroDeCategorias(), FiltroNombreCategoria("WiFi"))
         categoriaEnchufes = self.filtrador.buscar(self.directorio.darRegistroDeCategorias(), FiltroNombreCategoria("Enchufes"))
-
+        
         if bar.tieneWifi():
             self.calificarBar(usuario, bar, categoriaWiFi, puntajes[0])
             self.calificarBar(usuario, bar, categoriaEnchufes, puntajes[1])
@@ -65,7 +65,7 @@ class Dispacher(object):
     def calificarBar(self, usuario, bar, categoria, puntaje):
         # chequear si bar está bares
         # chequear si categoria está en categorias
-        if not (categoria.darNombre() == "WiFi" and bar.tieneWifi()):
+        if not (categoria.darNombre() == "WiFi" and not(bar.tieneWifi())): # este if chequea errores, esta bien dejarlo asi??
             calificacion = Calificacion(puntaje, usuario, categoria, bar)
             if (self.registrador.pertenece(calificacion,self.directorio.darRegistroDeCalificaciones())):
         	   # MAGIA NEGRA: Las calificaciones son iguales, aún con puntajes distintos. Entonces, modifico mi "misma" calificación
