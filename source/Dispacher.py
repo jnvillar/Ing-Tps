@@ -88,9 +88,9 @@ class Dispacher(object):
     def obtenerCalificaciones(self, bar):
         return self.filtrador.buscar(self.directorio.darRegistroDeCalificaciones(), FiltroCalificacionesDeUnBar(bar))
 
-    def mostrarRutaEnMapa(self, origen, destino):
+    def mostrarRuta(self, origen, destino):
         m = Mapa(origen, destino)
         m.mostrar()
 
-    def mostrarUbicacionEnMapa(self,algo):
+    def mostrarUbicacion(self,algo):
         return

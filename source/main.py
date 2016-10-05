@@ -192,15 +192,15 @@ def seleccionarBar(app,user,bar):
 		print "1. Ver Ubicacion del Bar en el mapa. \n 2. Ver ruta hacia el bar. \n 3. Salir"
 		eleccion = esValorValido(1, 3, "Ingrese su eleccion: ")
 		if eleccion==1:
-			app.mostrarUbicacionEnMapa(bar.darUbicacion())
+			app.mostrarUbicacion(bar.darUbicacion())
 		elif eleccion == 2:
 			direccion = queUbicacionUsar(user)
-			app.mostrarRutaEnMapa(direccion, bar.darUbicacion())
+			app.mostrarRuta(direccion, bar.darUbicacion())
 		elif eleccion == 3:
 			return
 		
 		verInfoLocalizacion = cambiarSNPorTrueFalse(raw_input("Desea volver a seleccionar el bar?: (s/n)"))
-	
+
 def cicloPrograma(app,user):
 	seguir = True
 	while seguir:
