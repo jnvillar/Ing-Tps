@@ -123,13 +123,6 @@ def insertarPuntuacion(string):
 			print "La calificación debe estar entre 1 y 5"
 	return puntaje
 
-def visualizarBares(listaBares):
-    i = 0
-    for unBar in listaBares:
-        print i,". ","Bar: ", unBar.darNombre(), "Ubicación: ", unBar.darUbicacion(), "Tiene WiFi: ", unBar.tieneWifi()
-        i = i+1
-    print "\n"
-
 def visualizarCategorias(categorias):
 	indice = 0
 	for cat in categorias:
@@ -173,14 +166,17 @@ def accionBuscarBar(app, user):
     if esListaVacia(app.obtenerBaresMismoNombre(nombreBar), "No existe el bar \n"):
         return
     bar = obtenerBar(nombreBar)
-    visualizarBar(app, bar)
+    visualizarBares([bar])
+    visualizarCalificacionesDeUnBar(app, bar)
 
-def visualizarBar(app,bar):
-	visualizarBares([bar])
-	visualizarCalificacionesDeBares(app, bar)
-    #app.mostrarRutaEnMapa(user.darUbicacion(), bar.darUbicacion())
+def visualizarBares(listaBares):
+    i = 0
+    for unBar in listaBares:
+        print i,". ","Bar: ", unBar.darNombre(), "Ubicación: ", unBar.darUbicacion(), "Tiene WiFi: ", unBar.tieneWifi()
+        i = i+1
+    print "\n"
 
-def visualizarCalificacionesDeBares(app, bar):
+def visualizarCalificacionesDeUnBar(app, bar):
 	listaCalificaciones = app.obtenerCalificaciones(bar)
 	i=0
 	for unaCalificacion in listaCalificaciones:
@@ -189,7 +185,22 @@ def visualizarCalificacionesDeBares(app, bar):
 			i+=1
 	print "\n"
 
-
+def seleccionarBar(app,user,bar):
+	visualizarBares[bar]
+	verInfoLocalizacion = True
+	while verInfoLocalizacion:
+		print "1. Ver Ubicacion del Bar en el mapa. \n 2. Ver ruta hacia el bar. \n 3. Salir"
+		eleccion = esValorValido(1, 3, "Ingrese su eleccion: ")
+		if eleccion==1:
+			app.mostrarUbicacionEnMapa(bar.darUbicacion())
+		elif eleccion == 2:
+			direccion = queUbicacionUsar(user)
+			app.mostrarRutaEnMapa(direccion, bar.darUbicacion())
+		elif eleccion == 3:
+			return
+		
+		verInfoLocalizacion = cambiarSNPorTrueFalse(raw_input("Desea volver a seleccionar el bar?: (s/n)"))
+	
 def cicloPrograma(app,user):
 	seguir = True
 	while seguir:
