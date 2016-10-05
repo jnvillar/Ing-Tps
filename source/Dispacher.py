@@ -91,3 +91,6 @@ class Dispacher(object):
     def mostrarRutaEnMapa(self, origen, destino):
         m = Mapa(origen, destino)
         m.mostrar()
+
+    def mostrarUbicacionEnMapa(self,algo):
+        return
