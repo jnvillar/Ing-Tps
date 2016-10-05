@@ -11,5 +11,8 @@ class Mapa(object):
         self.destino = destino
         self.gps = GPS()
 
-    def mostrar(self):
+    def mostrarRuta(self):
         self.gps.mostrarRutaEnMapa(self.origen, self.destino)
+    
+    def mostrarUbicacion(self):
+        self.gps.mostrarUbicacionEnMapa(self.origen)

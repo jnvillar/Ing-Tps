@@ -90,7 +90,9 @@ class Dispacher(object):
 
     def mostrarRuta(self, origen, destino):
         m = Mapa(origen, destino)
-        m.mostrar()
+        m.mostrarRuta()
 
-    def mostrarUbicacion(self,algo):
+    def mostrarUbicacion(self, ubicacion):
+        m = Mapa(ubicacion, ubicacion)
+        m.mostrarUbicacion()
         return
