@@ -36,7 +36,7 @@ class FiltroPorWiFi(FiltroBares):
 		BaresConWiFi = [unBar for unBar in listaBares if unBar.tieneWifi()]
 		return BaresConWiFi
 
-class FiltroCalificacionesDeUnBar(Filtro):
+class FiltroCalificacionesDeUnBar(FiltroBares):
 	def __init__(self,bar):
 		self.bar = bar
 	def aplicarFiltro(self, listaCalificaciones):
